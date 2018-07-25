@@ -1,0 +1,37 @@
+﻿
+.Error {
+    color: #FF0000;
+}
+
+
+.hiddencol {
+    display: none;
+}
+
+.validationred {
+    color: red;
+}
+
+.GridHeightFixed {
+    height: 400px;
+    overflow: auto;
+    position: relative;
+}
+
+.btn-outline-primary {
+    color: #007bff;
+    background-color: transparent;
+    background-image: none;
+    border-color: #007bff !important;
+}
+
+.btn-outline-danger {
+    color: #dc3545;
+    background-color: transparent;
+    background-image: none;
+    border-color: #dc3545 !important;
+}
+
+.multiline-txtbox {
+       max-height: 40px !important
+}

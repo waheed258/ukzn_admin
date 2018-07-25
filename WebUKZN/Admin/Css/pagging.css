@@ -1,0 +1,92 @@
+div.pagination
+{
+	font-family: "Trebuchet MS";
+	padding: 2px;
+	margin: 7px auto;
+}
+div.pagination a
+{
+	margin: 2px;
+	padding: 0.5em 0.6em 0.5em 0.6em;
+	background-color: #2295CC;
+	text-decoration: none;
+	color: #fff;
+}
+div.pagination a:hover, div.pagination a:active
+{
+	padding: 0.5em 0.6em 0.5em 0.6em;
+	margin: 2px;
+	background-color: #6A9912;
+	color: #fff;
+}
+div.pagination span.current
+{
+	padding: 0.5em 1em 0.5em 1em;
+	margin: 2px;
+	background-color: #6A9912;
+	color: #FFFFFF;
+}
+div.pagination span.disabled
+{
+	display: none;
+}
+
+.Pager span
+{
+	text-align: center;
+	color: #999;
+	display: inline-block;
+	width: 20px;
+	background-color: #A1DCF2;
+	margin-right: 3px;
+	line-height: 150%;
+	border: 1px solid #3AC0F2;
+}
+.Pager a
+{
+	text-align: center;
+	display: inline-block;
+	width: 20px;
+	background-color: #3AC0F2;
+	color: #fff;
+	border: 1px solid #3AC0F2;
+	margin-right: 3px;
+	line-height: 150%;
+	text-decoration: none;
+}
+
+.pagination1 {
+    line-height: 25px;
+}
+
+    .pagination1 span {
+        padding-left: 9px;
+        padding-right: 9px;
+        padding-top: 0px;
+        padding-bottom: 1px;
+        border: solid 1px #08c;
+        text-decoration: none;
+        white-space: nowrap;
+        background: #08c;
+    }
+
+    .pagination1 a,
+    .pagination1 a:visited {
+        text-decoration: none;
+        padding-left: 9px;
+        padding-right: 9px;
+        padding-top: 6px;
+        padding-bottom: 6px;
+        white-space: nowrap;
+    }
+
+        .pagination1 a:hover,
+        .pagination1 a:active {
+            padding-left: 9px;
+            padding-right: 9px;
+            padding-top: 1px;
+            padding-bottom: 1px;
+            text-decoration: none;
+            white-space: nowrap;
+            background: #08c;
+        }

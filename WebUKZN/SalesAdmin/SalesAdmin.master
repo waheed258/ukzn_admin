@@ -317,6 +317,7 @@
         <script src="../Admin/Js/Migrate1.4.2.js"></script>
         <script src="../Admin/Js/Jquery-Ui-1.8.js"></script>
         <script src="../Admin/Js/select2.min.js"></script>
+        <script src="../Admin/Js/wickedpicker.js"></script>
         <!-- ./wrapper -->
 
     </form>

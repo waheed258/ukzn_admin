@@ -13,9 +13,9 @@ public partial class SalesAdmin_MarkUpSetup : System.Web.UI.Page
     private BAFlightSearch objBaFlightSearch = new BAFlightSearch();
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["loginId"] != null)
+        if (Session["loginId"] == null)
         {
-            Response.Redirect("../Login.aspx");
+            Response.Redirect("../SalesLogin.aspx");
         }
         if (!IsPostBack)
         {

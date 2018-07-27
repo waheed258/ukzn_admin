@@ -149,10 +149,10 @@
                                     <table style="height: 100%">
                                         <tr>
                                             <td>
-                                                <asp:ImageButton ID="bntMoveRight" runat="server" ImageUrl="../Admin/Images/right.png" OnClick="bntMoveRight_Click" />
+                                                <asp:ImageButton ID="bntMoveRight" runat="server" ImageUrl="~/images/right.png" OnClick="bntMoveRight_Click" />
                                             </td>
                                             <td>
-                                                <asp:ImageButton ID="imgMoveLeft" runat="server" ImageUrl="../Admin/Images/Left.png" OnClick="imgMoveLeft_Click" />
+                                                <asp:ImageButton ID="imgMoveLeft" runat="server" ImageUrl="~/images/Left.png" OnClick="imgMoveLeft_Click" />
                                             </td>
                                         </tr>
 

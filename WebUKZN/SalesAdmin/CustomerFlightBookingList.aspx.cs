@@ -11,11 +11,11 @@ public partial class SalesAdmin_CustomerFlightBookingList : System.Web.UI.Page
     BAFlightSearch objBAFlightSearch = new BAFlightSearch();
     protected void Page_Load(object sender, EventArgs e)
     {
-        //if (Session["loginId"] != null)
-        //{
-        //    Response.Redirect("../Login.aspx");
+        if (Session["loginId"] == null)
+        {
+            Response.Redirect("../SalesLogin.aspx");
 
-        //}
+        }
         if (!IsPostBack)
         {
             BindFlightBooking();

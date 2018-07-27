@@ -19,9 +19,9 @@ public partial class SalesAdmin_DailyBranchReports : System.Web.UI.Page
     BALUser _objBalUser = new BALUser();
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["loginId"] != null)
+        if (Session["loginId"] == null)
         {
-            Response.Redirect("../Login.aspx");
+            Response.Redirect("../SalesLogin.aspx");
         }
         if (!IsPostBack)
         {

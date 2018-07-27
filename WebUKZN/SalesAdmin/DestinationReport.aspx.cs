@@ -15,9 +15,9 @@ public partial class SalesAdmin_DestinationReport : System.Web.UI.Page
     string strCurrencycode = "R";
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["loginId"] != null)
+        if (Session["loginId"] == null)
         {
-            Response.Redirect("../Login.aspx");
+            Response.Redirect("../SalesLogin.aspx");
         }
         strCurrencycode = _objBOUtiltiy.Currencycode();
         if (!IsPostBack)

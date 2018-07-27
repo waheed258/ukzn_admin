@@ -18,9 +18,9 @@ public partial class SalesAdmin_CreateAgent : System.Web.UI.Page
     #endregion Declarations
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["loginId"] != null)
+        if (Session["loginId"] == null)
         {
-            Response.Redirect("../Login.aspx");
+            Response.Redirect("../SalesLogin.aspx");
 
         }
         if (!IsPostBack)

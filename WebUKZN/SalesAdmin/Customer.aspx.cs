@@ -16,14 +16,14 @@ public partial class SalesAdmin_Customer : System.Web.UI.Page
     BALUser objBALUser = new BALUser();
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["loginId"]!= null)
+        if (Session["loginId"]== null)
         {
-            Response.Redirect("../Login.aspx");
+            Response.Redirect("../SalesLogin.aspx");
 
         }
-        if (Session["loginId"] != null)
+        if (Session["loginId"] == null)
         {
-            Response.Redirect("../Login.aspx", true);
+            Response.Redirect("../SalesLogin.aspx");
         }
         if (!IsPostBack)
         {

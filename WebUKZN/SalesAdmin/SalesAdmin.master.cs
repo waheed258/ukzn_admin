@@ -11,7 +11,10 @@ public partial class SalesAdmin_SalesAdmin : System.Web.UI.MasterPage
     BALUserUKZN objBalUser = new BALUserUKZN();
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        if (Session["loginId"] == null)
+        {
+            Response.Redirect("../SalesLogin.aspx");
+        }
     }
     protected void btnLogOut_Click(object sender, EventArgs e)
     {

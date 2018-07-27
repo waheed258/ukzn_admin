@@ -16,15 +16,15 @@ public partial class SalesAdmin_ChangePassword : System.Web.UI.Page
     #endregion Declarations
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["loginId"] != null)
+        if (Session["loginId"] == null)
         {
-            Response.Redirect("../Login.aspx");
+            Response.Redirect("../SalesLogin.aspx");
             return;
         }
         if (!IsPostBack)
         {
 
-            if (Session["loginId"] != null)
+            if (Session["loginId"] == null)
             {
                 hfStaffDetailsId.Value = Session["loginId"].ToString();
 

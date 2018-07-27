@@ -19,10 +19,10 @@ public partial class SalesAdmin_UserDailyReports : System.Web.UI.Page
     BALUserManager _objBALUserManager = new BALUserManager();
     protected void Page_Load(object sender, EventArgs e)
     {
-        //if (Session["loginId"] == null)
-        //{
-        //    Response.Redirect("../Login.aspx");
-        //}
+        if (Session["loginId"] == null)
+        {
+            Response.Redirect("~/SalesLogin.aspx");
+        }
         if (!IsPostBack)
         {
             BindRolesDropDwon();

@@ -115,7 +115,7 @@
                                     <br />
                                     <div class="form-group">
                                         <div class="col-md-5" style="height: 600px; overflow: scroll;">
-                                            <asp:GridView ID="gdvAirLineCodes" runat="server" AutoGenerateColumns="false">
+                                            <asp:GridView ID="gdvAirLineCodes" runat="server" AutoGenerateColumns="false" CssClass="table table-bordered table-striped mb-none dataTable no-footer">
                                                 <FooterStyle BackColor="#08376a" />
                                                 <PagerStyle BackColor="#efefef" ForeColor="black" HorizontalAlign="Left" CssClass="pagination1" />
                                                 <RowStyle CssClass="gradeA odd" />
@@ -159,7 +159,7 @@
                                             </table>
                                         </div>
                                         <div class="col-md-5" style="height: 600px; overflow: scroll;">
-                                            <asp:GridView ID="gdvFlightMarkUp" runat="server" AutoGenerateColumns="false" EmptyDataText="No Data Found">
+                                            <asp:GridView ID="gdvFlightMarkUp" runat="server" AutoGenerateColumns="false" EmptyDataText="No Data Found" CssClass="table table-bordered table-striped mb-none dataTable no-footer">
                                                 <PagerStyle BackColor="#efefef" ForeColor="black" HorizontalAlign="Left" CssClass="pagination1" />
                                                 <RowStyle CssClass="gradeA odd" />
                                                 <AlternatingRowStyle CssClass="gradeA even" />

@@ -14,10 +14,10 @@ public partial class SalesAdmin_ViewAllTargets : System.Web.UI.Page
     BOUtiltiy _objBOUtiltiy = new BOUtiltiy();
     protected void Page_Load(object sender, EventArgs e)
     {
-        //if (Session["loginId"] == null)
-        //{
-        //    Response.Redirect("../Login.aspx");
-        //}
+        if (Session["loginId"] == null)
+        {
+            Response.Redirect("~/SalesLogin.aspx");
+        }
         if (!IsPostBack)
         {
             GetAllTargetByMontAndYear();

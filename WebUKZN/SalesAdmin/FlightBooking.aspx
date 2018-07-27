@@ -22,7 +22,7 @@
                              <h3 class="box-title"> </h3>
                         </div>
                         <div class="box-body">
-                            <asp:GridView ID="gdvFlightBookings" runat="server" AllowPaging="true" EmptyDataText="No Bookings Found" CssClass="myGridClass" DataKeyNames="FlightRequestId"
+                            <asp:GridView ID="gdvFlightBookings" runat="server" AllowPaging="true" EmptyDataText="No Bookings Found" CssClass="table table-bordered table-striped mb-none dataTable no-footer" DataKeyNames="FlightRequestId"
                                 AutoGenerateColumns="False"
                                 Width="100%" PageSize="100" usecustompager="true" OnRowCommand="gdvFlights_RowCommand" OnRowDataBound="gdvFlightBookings_RowDataBound">
 

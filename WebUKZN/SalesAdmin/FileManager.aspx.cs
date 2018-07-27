@@ -18,9 +18,9 @@ public partial class SalesAdmin_FileManager : System.Web.UI.Page
     string _strUKZNsupplierno = ConfigurationManager.AppSettings["UKZNsupplierno"].ToString();
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["loginId"] != null)
+        if (Session["loginId"] == null)
         {
-            Response.Redirect("../Login.aspx");
+            Response.Redirect("~/SalesLogin.aspx");
         }
         if (!IsPostBack)
         {

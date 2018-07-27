@@ -54,7 +54,7 @@
                             </div>
                           
                                     <label>Flight Bookings</label>
-                                    <asp:GridView ID="gdvFlightBookings" runat="server" AllowPaging="true" EmptyDataText="No Bookings Found" CssClass="myGridClass" DataKeyNames="FlightRequestId"
+                                    <asp:GridView ID="gdvFlightBookings" runat="server" AllowPaging="true" EmptyDataText="No Bookings Found" CssClass="table table-bordered table-striped mb-none dataTable no-footer" DataKeyNames="FlightRequestId"
                                         AutoGenerateColumns="False"
                                         Width="100%" PageSize="100" usecustompager="true" OnRowCommand="gdvFlights_RowCommand" OnRowDataBound="gdvFlightBookings_RowDataBound">
 
@@ -158,7 +158,7 @@
                            
                                     <label>Hotel Bookings</label>
                                     <asp:GridView ID="gdvHotelBooking" runat="server" AllowSorting="true" EmptyDataText="No Bookings Found"
-                                        AutoGenerateColumns="False" CssClass="myGridClass"
+                                        AutoGenerateColumns="False" CssClass="table table-bordered table-striped mb-none dataTable no-footer"
                                         Width="100%" PageSize="4" usecustompager="true" OnRowCommand="gdvHotelBooking_RowCommand" OnRowDataBound="gdvHotelBooking_RowDataBound">
 
                                         <PagerSettings PreviousPageText="&laquo; previous" NextPageText="next &raquo;" PageButtonCount="4" />

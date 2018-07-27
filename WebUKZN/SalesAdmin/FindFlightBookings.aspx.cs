@@ -21,9 +21,9 @@ public partial class SalesAdmin_FindFlightBookings : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["loginId"] != null)
+        if (Session["loginId"] == null)
         {
-            Response.Redirect("../Login.aspx");
+            Response.Redirect("~/SalesLogin.aspx");
         }
         if (!IsPostBack)
         {

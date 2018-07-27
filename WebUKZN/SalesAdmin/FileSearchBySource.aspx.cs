@@ -17,9 +17,9 @@ public partial class SalesAdmin_FileSearchBySource : System.Web.UI.Page
     #region Events
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["loginId"] != null)
+        if (Session["loginId"] == null)
         {
-            Response.Redirect("../Login.aspx");
+            Response.Redirect("~/SalesLogin.aspx");
             return;
         }
     }

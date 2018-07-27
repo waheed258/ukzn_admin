@@ -55,7 +55,7 @@
                                 DataKeyNames="FlightRequestId"
                                 AutoGenerateColumns="False"
                                 Width="100%" PageSize="100" usecustompager="true" OnRowCommand="gdvFlights_RowCommand" OnRowDataBound="gdvFlightBookings_RowDataBound">
-
+                                <PagerStyle BackColor="#efefef" ForeColor="black" HorizontalAlign="Left" CssClass="pagination1" />
                                 <RowStyle CssClass="gradeA odd" />
                                 <AlternatingRowStyle CssClass="gradeA even" />
                                 <Columns>

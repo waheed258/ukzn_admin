@@ -27,7 +27,7 @@ public partial class SalesAdmin_PrintHotel : System.Web.UI.Page
     {
         if (Session["loginId"] == null)
         {
-            Response.Redirect("../Login.aspx");
+            Response.Redirect("../SalesLogin.aspx");
         }
         CurrencyCode = _objBOUtiltiy.Currencycode();
         if (!IsPostBack)

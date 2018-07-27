@@ -27,7 +27,7 @@ public partial class SalesAdmin_PrintCarTicket : System.Web.UI.Page
     {
         if (Session["loginId"] == null)
         {
-            Response.Redirect("../Login.aspx");
+            Response.Redirect("../SalesLogin.aspx");
         }
         try
         {

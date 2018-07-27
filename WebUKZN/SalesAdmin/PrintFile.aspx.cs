@@ -31,7 +31,7 @@ public partial class SalesAdmin_PrintFile : System.Web.UI.Page
     {
         if (Session["loginId"] == null)
         {
-            Response.Redirect("../Login.aspx");
+            Response.Redirect("../SalesLogin.aspx");
         }
         if (Request.QueryString["FileNo"] != null)
         {

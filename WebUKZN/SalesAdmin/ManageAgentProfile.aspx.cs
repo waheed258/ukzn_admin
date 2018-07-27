@@ -21,7 +21,7 @@ public partial class SalesAdmin_ManageAgentProfile : System.Web.UI.Page
     {
         if (Session["loginId"] == null)
         {
-            Response.Redirect("../Login.aspx");
+            Response.Redirect("../SalesLogin.aspx");
         }
         if (!IsPostBack)
         {

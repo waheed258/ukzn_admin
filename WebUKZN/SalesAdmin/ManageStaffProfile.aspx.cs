@@ -19,7 +19,7 @@ public partial class SalesAdmin_ManageStaffProfile : System.Web.UI.Page
     {
         if (Session["loginId"] == null)
         {
-            Response.Redirect("../Login.aspx");
+            Response.Redirect("../SalesLogin.aspx");
         }
         if (!IsPostBack)
         {

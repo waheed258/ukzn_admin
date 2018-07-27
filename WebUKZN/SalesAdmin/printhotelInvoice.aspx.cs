@@ -28,7 +28,7 @@ public partial class SalesAdmin_printhotelInvoice : System.Web.UI.Page
     {
         if (Session["loginId"] == null)
         {
-            Response.Redirect("../Login.aspx");
+            Response.Redirect("../SalesLogin.aspx");
         }
         try
         {

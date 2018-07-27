@@ -37,27 +37,28 @@
 
                             <div class="box-body form-horizontal">
                                 <div class="form-group">
-                                    <asp:GridView ID="gvReport" runat="server" AllowPaging="true" AllowSorting="true" EmptyDataText="No Records Found" ShowFooter="true"
-                                        AutoGenerateColumns="False"
-                                        Width="100%" CssClass="table table-bordered table-striped mb-none dataTable no-footer">
-                                        <AlternatingRowStyle CssClass="gradeA even" />
-                                        <FooterStyle BackColor="#08376a" />
-                                        <RowStyle CssClass="gradeA odd" />
-                                        <Columns>
+                                    <div class="col-md-12">
+                                        <asp:GridView ID="gvReport" runat="server" AllowPaging="true" AllowSorting="true" EmptyDataText="No Records Found" ShowFooter="true"
+                                            AutoGenerateColumns="False"
+                                            Width="100%" CssClass="table table-bordered table-striped mb-none dataTable no-footer">
+                                            <AlternatingRowStyle CssClass="gradeA even" />
+                                            <FooterStyle BackColor="#08376a" />
+                                            <RowStyle CssClass="gradeA odd" />
+                                            <Columns>
 
-                                            <asp:TemplateField HeaderText="SN">
-                                                <ItemStyle HorizontalAlign="Center" />
-                                                <HeaderStyle HorizontalAlign="Center" />
-                                                <ItemTemplate>
-                                                    <%# Container.DataItemIndex+1 %>
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
-                                            <asp:BoundField DataField="accountcode" HeaderText="Account Code"></asp:BoundField>
-                                            <asp:BoundField DataField="accountcategory" HeaderText="Account Category"></asp:BoundField>
-                                            <asp:BoundField DataField="accountname" HeaderText="Account Name"></asp:BoundField>
-                                        </Columns>
-                                    </asp:GridView>
-
+                                                <asp:TemplateField HeaderText="SN">
+                                                    <ItemStyle HorizontalAlign="Center" />
+                                                    <HeaderStyle HorizontalAlign="Center" />
+                                                    <ItemTemplate>
+                                                        <%# Container.DataItemIndex+1 %>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:BoundField DataField="accountcode" HeaderText="Account Code"></asp:BoundField>
+                                                <asp:BoundField DataField="accountcategory" HeaderText="Account Category"></asp:BoundField>
+                                                <asp:BoundField DataField="accountname" HeaderText="Account Name"></asp:BoundField>
+                                            </Columns>
+                                        </asp:GridView>
+                                    </div>
                                 </div>
                             </div>
                             <!-- /.box-body -->

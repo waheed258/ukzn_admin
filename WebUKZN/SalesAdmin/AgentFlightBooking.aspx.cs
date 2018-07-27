@@ -22,7 +22,7 @@ public partial class SalesAdmin_AgentFlightBooking : System.Web.UI.Page
 
         if (Session["loginId"] == null)
         {
-            Response.Redirect("../Login.aspx");
+            Response.Redirect("../SalesLogin.aspx");
         }
         if (!IsPostBack)
         {

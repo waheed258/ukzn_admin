@@ -21,7 +21,7 @@ public partial class SalesAdmin_AirLineReports : System.Web.UI.Page
 
         if (Session["loginId"] == null)
         {
-            Response.Redirect("../Login.aspx");
+            Response.Redirect("../SalesLogin.aspx");
         }
         strCurrencycode = _objBOUtiltiy.Currencycode();
         if (!IsPostBack)

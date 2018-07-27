@@ -31,7 +31,7 @@ public partial class SalesAdmin_AdminInvoicePdf : System.Web.UI.Page
 
             if (Session["loginId"] == null)
             {
-                Response.Redirect("../Login.aspx");
+                Response.Redirect("../SalesLogin.aspx");
                 return;
             }
             strCurrencyCode = _objBOUtiltiy.Currencycode();

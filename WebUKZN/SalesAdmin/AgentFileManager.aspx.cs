@@ -15,7 +15,7 @@ public partial class SalesAdmin_AgentFileManager : System.Web.UI.Page
 
         if (Session["loginId"] == null)
         {
-            Response.Redirect("../Login.aspx");
+            Response.Redirect("../SalesLogin.aspx");
         }
         if (!IsPostBack)
         {

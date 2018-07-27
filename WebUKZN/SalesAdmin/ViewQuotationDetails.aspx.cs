@@ -40,10 +40,10 @@ public partial class SalesAdmin_ViewQuotationDetails : System.Web.UI.Page
     {
         try
         {
-            //if (Session["loginId"] == null)
-            //{
-            //    Response.Redirect("../Login.aspx");
-            //}
+            if (Session["loginId"] == null)
+            {
+                Response.Redirect("../Login.aspx");
+            }
             strCurrencyCode = objBOUtiltiy.Currencycode();
             if (!IsPostBack)
             {

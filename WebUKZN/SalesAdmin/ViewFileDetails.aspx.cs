@@ -14,11 +14,11 @@ public partial class SalesAdmin_ViewFileDetails : System.Web.UI.Page
     BOUtiltiy _objBoutility = new BOUtiltiy();
     protected void Page_Load(object sender, EventArgs e)
     {
-        //if (Session["loginId"] == null)
-        //{
-        //    Response.Redirect("../Login.aspx");
-        //    return;
-        //}
+        if (Session["loginId"] == null)
+        {
+            Response.Redirect("../Login.aspx");
+            return;
+        }
         if (!IsPostBack)
         {
             if (Request.QueryString["FileNo"] != null)

@@ -24,10 +24,10 @@ public partial class SalesAdmin_ShowBookinginfo : System.Web.UI.Page
     string strCurrencyCode = "R";
     protected void Page_Load(object sender, EventArgs e)
     {
-        //if (Session["loginId"] == null)
-        //{
-        //    Response.Redirect("../Login.aspx");
-        //}
+        if (Session["loginId"] == null)
+        {
+            Response.Redirect("../Login.aspx");
+        }
         try
         {
             if (!string.IsNullOrEmpty(Request.QueryString["frid"]))

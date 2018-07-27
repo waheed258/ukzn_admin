@@ -13,13 +13,13 @@ public partial class SalesAdmin_StaffList : System.Web.UI.Page
     private BOUtiltiy _objBOUtiltiy = new BOUtiltiy();
     protected void Page_Load(object sender, EventArgs e)
     {
-        //if (Session["loginId"] == null)
-        //{
-        //    Response.Redirect("../Login.aspx");
-        //}
+        if (Session["loginId"] == null)
+        {
+            Response.Redirect("../Login.aspx");
+        }
         if (!IsPostBack)
         {
-           // BindGrid();
+            BindGrid();
         }
     }
 

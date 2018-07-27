@@ -17,10 +17,10 @@ public partial class SalesAdmin_StaffCreation : System.Web.UI.Page
     #endregion Declarations
     protected void Page_Load(object sender, EventArgs e)
     {
-        //if (Session["loginId"] == null)
-        //{
-        //    Response.Redirect("../Login.aspx");
-        //}
+        if (Session["loginId"] == null)
+        {
+            Response.Redirect("../Login.aspx");
+        }
         if (!IsPostBack)
         {
            BindRolesDropDwon();

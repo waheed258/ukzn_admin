@@ -17,11 +17,11 @@ public partial class SalesAdmin_SwgInvoiceList : System.Web.UI.Page
     #region Events
     protected void Page_Load(object sender, EventArgs e)
     {
-        //if (Session["loginId"] == null)
-        //{
-        //    Response.Redirect("../Login.aspx");
-        //    return;
-        //}
+        if (Session["loginId"] == null)
+        {
+            Response.Redirect("../Login.aspx");
+            return;
+        }
         if (!IsPostBack)
         {
             GetFileGrid();

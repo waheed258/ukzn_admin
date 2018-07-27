@@ -18,10 +18,10 @@ public partial class SalesAdmin_SourceWiseReport : System.Web.UI.Page
     BORpeort _objBORpeort = new BORpeort();
     protected void Page_Load(object sender, EventArgs e)
     {
-        //if (Session["loginId"] == null)
-        //{
-        //    Response.Redirect("../Login.aspx");
-        //}
+        if (Session["loginId"] == null)
+        {
+            Response.Redirect("../Login.aspx");
+        }
         if (!IsPostBack)
         {
             txtStartDate.Text = _objBOUtiltiy.ConvertDateFormat(DateTime.Now.ToString());

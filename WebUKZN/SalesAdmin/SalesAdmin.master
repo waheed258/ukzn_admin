@@ -1,4 +1,5 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="SalesAdmin.master.cs" Inherits="SalesAdmin_SalesAdmin" %>
+
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
 <!DOCTYPE html>
@@ -35,7 +36,7 @@
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
     <form id="form1" runat="server">
-      
+
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
         <div class="wrapper">
             <header class="main-header">
@@ -71,28 +72,28 @@
                                             <li>
                                                 <a href="#">
                                                     <i class="fa fa-users text-aqua"></i>5 new members joined today
-                    </a>
+                                                </a>
                                             </li>
                                             <li>
                                                 <a href="#">
                                                     <i class="fa fa-warning text-yellow"></i>Very long description here that may not fit into the
                       page and may cause design problems
-                    </a>
+                                                </a>
                                             </li>
                                             <li>
                                                 <a href="#">
                                                     <i class="fa fa-users text-red"></i>5 new members joined
-                    </a>
+                                                </a>
                                             </li>
                                             <li>
                                                 <a href="#">
                                                     <i class="fa fa-shopping-cart text-green"></i>25 sales made
-                    </a>
+                                                </a>
                                             </li>
                                             <li>
                                                 <a href="#">
                                                     <i class="fa fa-user text-red"></i>You changed your username
-                    </a>
+                                                </a>
                                             </li>
                                         </ul>
                                     </li>
@@ -263,16 +264,16 @@
                                     <li><a href="QuotationForm.aspx"><i class="fa fa-circle-o"></i>QuotationForm</a></li>
                                     <li><a href="Registration.aspx"><i class="fa fa-circle-o"></i>Registration</a></li>
 
-                                   
+
                                     <li><a href="SourceReport.aspx"><i class="fa fa-circle-o"></i>Source Report</a></li>
                                     <li><a href="AirFileManager.aspx"><i class="fa fa-circle-o"></i>Air File Manager</a></li>
-                                      <li><a href="QuotationRequest.aspx"><i class="fa fa-circle-o"></i>Quotation Request</a></li>
-                            
-                                     <li><a href="HotelBooking.aspx"><i class="fa fa-circle-o"></i>HotelBooking</a></li>
-                            
-                                     <li><a href="Testing.aspx"><i class="fa fa-circle-o"></i>Testing</a></li>
-                            
-                                        </ul>
+                                    <li><a href="QuotationRequest.aspx"><i class="fa fa-circle-o"></i>Quotation Request</a></li>
+
+                                    <li><a href="HotelBooking.aspx"><i class="fa fa-circle-o"></i>HotelBooking</a></li>
+
+                                    <li><a href="Testing.aspx"><i class="fa fa-circle-o"></i>Testing</a></li>
+
+                                </ul>
                             </li>
 
                         </ul>
@@ -282,27 +283,27 @@
                 </aside>
             </div>
             <div class="content-wrapper">
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-            </asp:ContentPlaceHolder>
-                </div>
-           
-                <footer class="main-footer" id="dvfooter" runat="server">
-                    <div class="pull-right hidden-xs">
-                        <b>Version</b> 1.0
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+
+            <footer class="main-footer" id="dvfooter" runat="server">
+                <div class="pull-right hidden-xs">
+                    <b>Version</b> 1.0
    
-                    </div>
-                    <strong>Copyright &copy; 2017-2018 <a href="#">UKZN</a>.</strong> All rights
+                </div>
+                <strong>Copyright &copy; 2017-2018 <a href="#">UKZN</a>.</strong> All rights
     reserved.
  
-                </footer>
-          
+            </footer>
+
         </div>
 
 
         <!-- ./wrapper -->
 
         <!-- jQuery 2.2.3 -->
-     
+
         <script src="../Admin/plugins/jQuery/jquery-2.2.3.min.js"></script>
 
         <!-- Bootstrap 3.3.6 -->

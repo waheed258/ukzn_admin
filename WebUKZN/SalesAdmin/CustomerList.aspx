@@ -5,7 +5,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                     <ContentTemplate>
-    <div class="content-wrapper">
+  
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>Customer FlightBooking List
@@ -91,7 +91,7 @@
             </div>
             <!-- /.row -->
         </section>
-    </div>
+    
                         </ContentTemplate>
            </asp:UpdatePanel>
 </asp:Content>

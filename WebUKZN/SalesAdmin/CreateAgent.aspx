@@ -60,7 +60,7 @@
             <asp:HiddenField ID="hfAgentLoginId" runat="server" Value="0" />
             <asp:HiddenField ID="hfAgentDetailsId" runat="server" Value="0" />
             <asp:HiddenField ID="hfcommunicationlogo" runat="server" Value="" />
-            <div class="content-wrapper">
+           
                 <section class="content-header">
                     <h1>Agent Creation
        
@@ -563,7 +563,7 @@
                     </div>
             </div>
             </section>
-            </div>
+            
         </ContentTemplate>
     </asp:UpdatePanel>
     <asp:UpdateProgress ID="UpdateProgress1" runat="server"

@@ -57,8 +57,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
         <ContentTemplate>
-           
-             <div class="content-wrapper">
+
                  <section class="content-header">
             <h1>CHANGE PASSWORD
        
@@ -169,7 +168,7 @@
             </div>
             
                      </section>
-                 </div>
+                 
         </ContentTemplate>
     </asp:UpdatePanel>
     <asp:UpdateProgress ID="UpdateProgress1" runat="server"

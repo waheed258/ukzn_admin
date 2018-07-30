@@ -2,8 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <div class="content-wrapper">
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">  
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>Customer FlightBooking List
@@ -104,7 +103,6 @@
                 </div>
             </div>
             <!-- /.row -->
-        </section>
-    </div>
+        </section>  
 </asp:Content>
 

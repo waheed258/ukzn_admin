@@ -58,7 +58,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
         <ContentTemplate>
-            <div class="content-wrapper">
+          
                 <section class="content-header">
                     <h1>Service Fee
        
@@ -195,7 +195,7 @@
                         </div>
                         </div>
                 </section>
-            </div>
+            
         </ContentTemplate>
     </asp:UpdatePanel>
 

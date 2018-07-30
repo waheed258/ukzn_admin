@@ -47,7 +47,7 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <div class="content-wrapper">
+    
         <section class="content-header">
             <h1>Branch Report
        
@@ -181,6 +181,6 @@
 
 
         </section>
-    </div>
+   
 </asp:Content>
 

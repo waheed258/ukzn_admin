@@ -281,8 +281,10 @@
                     <!-- /.sidebar -->
                 </aside>
             </div>
+            <div class="content-wrapper">
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
+                </div>
            
                 <footer class="main-footer" id="dvfooter" runat="server">
                     <div class="pull-right hidden-xs">

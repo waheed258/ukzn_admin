@@ -9,7 +9,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
+    
 
         <!-- Content Header (Page header) -->
         <section class="content-header">
@@ -243,7 +243,6 @@
              
         </section>
         <!-- /.content -->
-    </div>
-    <!-- /.content-wrapper -->
+    
 </asp:Content>
 

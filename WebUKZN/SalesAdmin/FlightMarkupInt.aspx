@@ -61,7 +61,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
         <ContentTemplate>
-            <div class="content-wrapper">
+         
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
                     <h1>International Flight Price Markup Settings         
@@ -194,7 +194,7 @@
                                 </div>
                 </section>
                 <br />
-            </div>
+        
         </ContentTemplate>
     </asp:UpdatePanel>
     <asp:UpdateProgress ID="UpdateProgress1" runat="server"

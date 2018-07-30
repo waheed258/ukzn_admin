@@ -61,7 +61,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
         <ContentTemplate>
-            <div class="content-wrapper">
+        
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
                     <h1>AirLine Policy
@@ -398,7 +398,7 @@
                             </div>
                         </div>
                 </section>
-            </div>
+           
         </ContentTemplate>
     </asp:UpdatePanel>
     <asp:UpdateProgress ID="UpdateProgress1" runat="server"

@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <div class="content-wrapper">
+   
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>All Targets</h1>
@@ -24,12 +24,13 @@
                         <!-- /.box-header -->
                         <div class="box-body form-horizontal">
                             <div class="form-group">
-                                <asp:GridView ID="gdvData" runat="server" AllowPaging="true" EmptyDataText="No Records Found" CssClass="table table-bordered table-striped mb-none dataTable no-footer" DataKeyNames="TargetId"
+                                <asp:GridView ID="gdvData" runat="server" AllowPaging="true" EmptyDataText="No Records Found" CssClass="myGridClass" DataKeyNames="TargetId"
                                     AutoGenerateColumns="False"
                                     Width="100%" PageSize="100" usecustompager="true" OnRowDataBound="gdvData_RowDataBound">
-                                    <PagerStyle BackColor="#efefef" ForeColor="black" HorizontalAlign="Left" CssClass="pagination1" />
+
                                     <PagerSettings PreviousPageText="&laquo; previous" NextPageText="next &raquo;" PageButtonCount="3" />
                                     <Columns>
+
                                         <asp:TemplateField HeaderText="SN" HeaderStyle-CssClass="panel-heading" ItemStyle-CssClass="gradeC">
                                             <ItemTemplate>
                                                 <asp:HiddenField ID="hfTargetId" runat="server" Value='<%#Eval("TargetId")%>' />
@@ -79,6 +80,6 @@
                 </div>
             </div>
         </section>
-    </div>
+   
 </asp:Content>
 

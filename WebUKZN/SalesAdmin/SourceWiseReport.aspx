@@ -44,7 +44,7 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <div class="content-wrapper">
+   
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>Source Wise Report
@@ -148,6 +148,6 @@
             </div>
             <!-- /.row -->
         </section>
-    </div>
+   
 </asp:Content>
 

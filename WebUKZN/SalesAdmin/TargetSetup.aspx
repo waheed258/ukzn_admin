@@ -44,7 +44,7 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <div class="content-wrapper">
+    
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>Target Setup
@@ -228,6 +228,6 @@
             </div>
         </section>
 
-    </div>
+   
 </asp:Content>
 

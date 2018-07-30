@@ -46,7 +46,7 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <div class="content-wrapper">
+    
         <section class="content-header">
         </section>
         <!-- Main content -->
@@ -129,7 +129,7 @@
 
             </div>
         </section>
-    </div>
+   
 
 </asp:Content>
 

@@ -1,0 +1,126 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Invocie</title>
+    <style>
+        .clearfix:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+    </style>
+</head>
+<body style=" position: relative;
+  width: 21cm;
+  height: 29.7cm;
+  margin: 0 auto;
+  color: #555555;
+  background: #FFFFFF;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  font-family: SourceSansPro;">
+    <header class="clearfix" style="padding: 10px 0;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #AAAAAA;">
+        <div id="" style="float:right;">
+            <h1 class="">Rapid Acconting Program For Travel <br>Industry</h1>
+            <address>
+                {address}
+            </address>
+
+        </div>
+        <div id="" style="width:15%;">
+            <img src="Untitled.png">
+        </div>
+
+
+    </header>
+    <main>
+        <div id="details" class="clearfix" style="margin-bottom: 50px;">
+            <center> ><h2>COMPUTER GENERATED TAX INVOICE</h2></center>
+            <div id="" style="float: right;
+  text-align: right;">
+
+                <table>
+                    <tr>
+                        <td style="font-weight:bold">
+                            Document No :
+                        </td>
+                        <td align="left">
+                            {Document_No}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight:bold">Date :</td>
+                        <td align="left">{Date}</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight:bold">Consultant :</td>
+                        <td align="left">{Consultant}</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight:bold">Client :</td>
+                        <td align="left">{Client}</td>
+                    </tr>
+                    <tr>
+                        <td  style="font-weight:bold">Currency :</td>
+                        <td align="left">{Currency}</td>
+                    </tr>
+
+                </table>
+
+            </div>
+        </div>
+
+        <table style="border: 1px ridge black; width: 100%;margin-bottom: 20px;border-collapse:collapse;">
+
+            <thead style="border: 1px ridge black;">
+                <tr>
+                    <th style="font-weight:bold;border: 1px ridge black;padding: 5px;
+  background-color: white;
+
+  border-bottom: 1px ridge black;border-radius:5px;">Prn</th>
+                    <th style="font-weight:bold;border: 1px ridge black;padding: 5px;
+  background-color:white;
+
+  border-bottom: 1px ridge black;">Ticket No</th>
+                    <th style="font-weight:bold;border: 1px ridge black;padding: 5px;
+ background-color:white;
+
+  border-bottom: 1px ridge black;">Passenger/Dep Date/Route/Class</th>
+                    <th style="font-weight:bold;border: 1px ridge black;padding: 5px;
+  background-color:white;
+
+  border-bottom: 1px ridge black;">Excl Amt</th>
+                    <th style="font-weight:bold;border: 1px ridge black;padding: 5px;
+  background-color:white;
+
+  border-bottom: 1px ridge black;">VAT</th>
+                    <th style="font-weight:bold;border:1px ridge black;padding: 5px;
+  background-color:white;
+
+  border-bottom: 1px ridge black;">Incl Amt</th>
+                </tr>
+            </thead>
+            <tbody>
+                {MainRows}
+            </tbody>
+
+        </table>
+        <hr>
+    </main>
+    <footer>
+        <div style="width:33.3%;float:right;">
+            <img src="4.jpg" style="margin-left:200px;">
+        </div>
+        <div style="width:33.3%;float:right;">
+            <img src="3.jpg" style="margin-left:100px;">
+        </div>
+        <div style="width:33.3%;float:left;">
+            <img src="2.jpg">
+        </div>
+    </footer>
+
+</body>
+</html>

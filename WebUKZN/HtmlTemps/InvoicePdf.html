@@ -1,0 +1,166 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Invoice</title>
+    <link rel="stylesheet" type="text/css" href="http://finlite.dinoosys.in/HtmlTemps/bootstrap.min.css" />
+
+
+</head>
+<body>
+    <div class="container">
+        <div class="page-header" style="text-align: center;">
+            <!--<h1>Simple Invoice <small>Bootstrap template, demonstrating a simple invoice.</small></h1>-->
+            <!--<img src="file:///C:/Users/dinoosys/Desktop/Template-SimpleInvoice/bootstrap/css/Serendipitylogo.png" />-->
+            {Image}
+        </div>
+        <!-- Simple Invoice - START -->
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="text-center">
+                        <i class="fa fa-search-plus pull-left icon"></i>
+                        <h2>TAX INVOICE (COMPUTERIZED)</h2>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-xs-12 col-md-3 col-lg-3 pull-left">
+                            <div class="panel panel-default height">
+                                <div class="panel-heading" style="text-align:center; font-weight:bold;">Billing Details</div>
+                                <div class="panel-body">
+                                    {Client1}
+                                    <br />
+                                    <br />
+                                    {ClientAddress}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-5 col-lg-5">
+                            <div class="panel panel-default height">
+                                <div class="panel-heading" style="text-align:center; font-weight:bold;">Company Inforamtion</div>
+                                <div class="panel-body">
+                                    <h4 style="margin-top: 0px;margin-bottom: 0px;">{CompanyName}</h4>
+                                    <br />
+                                    {address}<br />
+                                    <br />
+                                    VAT No : 4430166746
+                                    <br />
+                                    CC REG No : 1996/06369123
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12 col-md-4 col-lg-4 pull-right">
+                            <div class="panel panel-default height">
+                                <div class="panel-heading" style="text-align:center; font-weight:bold;">Invoice Details</div>
+                                <div class="panel-body">
+                                    <table>
+                                        <tr>
+                                            <td style="font-weight:bold;text-align:left">
+                                                Invoice No
+                                            </td>
+                                            <td>:</td>
+                                            <td align="left">
+                                                {Invoice_No}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-weight:bold;text-align:left;">Date</td>
+                                            <td>:</td>
+                                            <td align="left">{Date}</td>
+                                        </tr>
+                                        <!--<tr>
+                                            <td style="font-weight: bold; text-align: left;">Requester </td>
+                                            <td>:</td>
+                                            <td align="left">{Consultant}</td>
+                                        </tr>-->
+                                        <tr>
+                                            <td style="font-weight: bold; text-align: left;">Client </td>
+                                            <td>:</td>
+                                            <td align="left">{Client}</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-weight: bold; text-align: left;">Order No </td>
+                                            <td>:</td>
+                                            <td align="left">{OrderNo}</td>
+                                        </tr>
+                                        <!--<tr>
+                                            <td style="font-weight: bold; text-align: left;">Order No </td>
+                                            <td>:</td>
+                                            <td align="left">{OrderNo}</td>
+                                        </tr>-->
+
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="text-center"><strong>Invoice Summary</strong></h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table style="width:99%" class="table table-condensed">
+                                    {MainRows}
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+
+
+                        <table style="width:99%" class="table table-condensed">
+                            <tr>
+                                <td align="left" width="50%;">{IATA}</td>
+                                <td align="right" width="49%;">{ASTA}</td>
+                            </tr>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+        <style>
+            .height {
+                min-height: 200px;
+            }
+
+            .icon {
+                font-size: 47px;
+                color: #5CB85C;
+            }
+
+            .iconbig {
+                font-size: 77px;
+                color: #5CB85C;
+            }
+
+            .table > tbody > tr > .emptyrow {
+                border-top: none;
+            }
+
+            .table > thead > tr > .emptyrow {
+                border-bottom: none;
+            }
+
+            .table > tbody > tr > .highrow {
+                border-top: 3px solid;
+            }
+        </style>
+        <!-- Simple Invoice - END -->
+    </div>
+</body>
+</html>

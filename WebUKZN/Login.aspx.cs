@@ -8,15 +8,27 @@ using BusinessManager;
 using System.Data;
 using System.Net;
 using System.Net.Sockets;
+using UKZNInterface.WebReference;
 
 
 
 public partial class Login : System.Web.UI.Page
 {
-    private BALUserUKZN _objBALogin = new BALUserUKZN();
-    private BOUtiltiyUKZN _objBOUtiltiy = new BOUtiltiyUKZN();
+    private BALUser _objBALUser = new BALUser();
+    private BOUtiltiy _objBOUtiltiy = new BOUtiltiy();
+
+    #region UKZNWEBSERVICE
+    TravelManagementUKZN objUKZN = new TravelManagementUKZN();
+
+    G0securitytokentypeUser objSec = new G0securitytokentypeUser();
+
+    #endregion UKZNWEBSERVICE
+
+    //private BALUserUKZN _objBALogin = new BALUserUKZN();
+    //private BOUtiltiyUKZN _objBOUtiltiy = new BOUtiltiyUKZN();
     protected void Page_Load(object sender, EventArgs e)
     {
+
         if (!IsPostBack)
         {
             Session.Abandon();
@@ -27,33 +39,31 @@ public partial class Login : System.Web.UI.Page
     {
         try
         {
-            DataSet objDs = _objBALogin.UserAuthentication(txtLoginId.Text.Trim(), txtPassword.Text.Trim());
-            if (objDs.Tables[0].Rows.Count == 1)
+            DataSet objDs = _objBALUser.GetUserMasterForLogin(txtLoginId.Text.Trim(), txtPassword.Text.Trim());
+            if (objDs.Tables[0].Rows.Count > 0)
             {
 
-                Session["UserLoginId"] = objDs.Tables[0].Rows[0]["UserLoginId"].ToString();
-                Session["UserMasterId"] = objDs.Tables[0].Rows[0]["UserMasterId"];
-                Session["UserCompanyId"] = objDs.Tables[0].Rows[0]["UserCompanyId"].ToString();
-                Session["UserRole"] = objDs.Tables[0].Rows[0]["UserRole"].ToString();
-                Session["UserFullName"] = objDs.Tables[0].Rows[0]["UserFullName"].ToString();
-               // Session["BranchId"] = objDs.Tables[0].Rows[0]["BranchId"].ToString();
-                //Session["UserCode"] = objDs.Tables[0].Rows[0]["UserCode"].ToString();
-                Session["CompanyLogo"] = objDs.Tables[0].Rows[0]["CompanyLogo"].ToString();
+                Session["loginuser"] = objDs.Tables[0].Rows[0]["loginusername"].ToString();
+                Session["loginId"] = objDs.Tables[0].Rows[0]["UserLoginId"].ToString();
+                Session["ukzn_staff"] = objDs.Tables[0].Rows[0]["staffno"].ToString();
+                Session["role_id"] = objDs.Tables[0].Rows[0]["UserRole"].ToString();
+                Session["logo"] = objDs.Tables[0].Rows[0]["CompanyLoogo"].ToString();
+                Session["commlogo"] = objDs.Tables[0].Rows[0]["communicationlogo"].ToString();
+                Session["CompanyId"] = objDs.Tables[0].Rows[0]["UserCompany"].ToString();
+                Session["BranchId"] = objDs.Tables[0].Rows[0]["BranchId"].ToString();
+                Session["CompanyAddress"] = objDs.Tables[0].Rows[0]["CompanyAddress"].ToString();
+                Session["agentname"] = objDs.Tables[0].Rows[0]["agentname"].ToString().ToUpper();
+                Session["TicketConsId"] = objDs.Tables[0].Rows[0]["TicketConsId"].ToString().ToUpper();
+                //Session["BudgetOfTravellers"] = objDs.Tables[0].Rows[0]["BudgetOfTravellers"].ToString().ToUpper();
+                Session["EmpCategory"] = objDs.Tables[0].Rows[0]["empcategory"].ToString().ToUpper();
+                Session["UserEmail"] = objDs.Tables[0].Rows[0]["UserEmail"].ToString().ToUpper();
+                Session["UserPhone"] = objDs.Tables[0].Rows[0]["UserPhone"].ToString().ToUpper();
 
-                string ipaddress = GetLocalIPAddress();
-                
-
-
-             int LoginHistory =   _objBALogin.UserLoginHistoryInsertUpdate( Convert.ToInt32(Session["UserMasterId"].ToString()), ipaddress,"Insert");
-                if(LoginHistory >=1)
-
-                Response.Redirect("Admin/Dashboard.aspx");
-               
-
+                Response.Redirect("SalesAdmin/Index.aspx");
             }
             else
             {
-                lblMsg.Text = _objBOUtiltiy.ShowMessage("danger", "Error", "Invalid username/password");
+                lblMsg.Text = _objBOUtiltiy.ShowMessage("danger", "Info ", "Invalid username/password.");
             }
 
         }
@@ -62,7 +72,7 @@ public partial class Login : System.Web.UI.Page
             lblMsg.Text = _objBOUtiltiy.ShowMessage("danger", "Error", ex.Message);
         }
     }
-   
+
 
     protected void cmdPopup_Click(object sender, EventArgs e)
     {

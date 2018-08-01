@@ -12,3 +12,10 @@ C:\Users\DINH0031\Desktop\latest\UKZN\DataLayer\bin\Debug\EntityLayer.pdb
 C:\Users\DINH0031\Desktop\latest\UKZN\DataLayer\obj\Debug\DataLayer.csprojResolveAssemblyReference.cache
 C:\Users\DINH0031\Desktop\latest\UKZN\DataLayer\obj\Debug\DataLayer.dll
 C:\Users\DINH0031\Desktop\latest\UKZN\DataLayer\obj\Debug\DataLayer.pdb
+F:\GitHub\ukzn_admin\DataLayer\bin\Debug\DataLayer.dll
+F:\GitHub\ukzn_admin\DataLayer\bin\Debug\DataLayer.pdb
+F:\GitHub\ukzn_admin\DataLayer\bin\Debug\EntityLayer.dll
+F:\GitHub\ukzn_admin\DataLayer\bin\Debug\EntityLayer.pdb
+F:\GitHub\ukzn_admin\DataLayer\obj\Debug\DataLayer.csprojResolveAssemblyReference.cache
+F:\GitHub\ukzn_admin\DataLayer\obj\Debug\DataLayer.dll
+F:\GitHub\ukzn_admin\DataLayer\obj\Debug\DataLayer.pdb

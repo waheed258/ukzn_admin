@@ -16,3 +16,12 @@ C:\Users\DINH0031\Desktop\latest\UKZN\BusinessLayer\bin\Debug\EntityLayer.pdb
 C:\Users\DINH0031\Desktop\latest\UKZN\BusinessLayer\obj\Debug\BusinessLayer.csprojResolveAssemblyReference.cache
 C:\Users\DINH0031\Desktop\latest\UKZN\BusinessLayer\obj\Debug\BusinessLayer.dll
 C:\Users\DINH0031\Desktop\latest\UKZN\BusinessLayer\obj\Debug\BusinessLayer.pdb
+F:\GitHub\ukzn_admin\BusinessLayer\bin\Debug\BusinessLayer.dll
+F:\GitHub\ukzn_admin\BusinessLayer\bin\Debug\BusinessLayer.pdb
+F:\GitHub\ukzn_admin\BusinessLayer\bin\Debug\DataLayer.dll
+F:\GitHub\ukzn_admin\BusinessLayer\bin\Debug\EntityLayer.dll
+F:\GitHub\ukzn_admin\BusinessLayer\bin\Debug\DataLayer.pdb
+F:\GitHub\ukzn_admin\BusinessLayer\bin\Debug\EntityLayer.pdb
+F:\GitHub\ukzn_admin\BusinessLayer\obj\Debug\BusinessLayer.csprojResolveAssemblyReference.cache
+F:\GitHub\ukzn_admin\BusinessLayer\obj\Debug\BusinessLayer.dll
+F:\GitHub\ukzn_admin\BusinessLayer\obj\Debug\BusinessLayer.pdb

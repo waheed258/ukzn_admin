@@ -7,54 +7,115 @@ using System.Web.UI.WebControls;
 using System.Data;
 using BusinessManager;
 using System.Xml.Serialization;
-using iTextSharp.text;
-using iTextSharp.text.pdf;
-using iTextSharp.text.html;
-using System.IO;
-using iTextSharp.text.html.simpleparser;
 
-public partial class Admin_FlightbookingSearc : System.Web.UI.Page
+public partial class Admin_ViewLatestFile : System.Web.UI.Page
 {
+    BALFileManager objBALFileManager = new BALFileManager();
     BAFlightSearch objBAFlightSearch = new BAFlightSearch();
     BOUtiltiy _objBoutility = new BOUtiltiy();
     protected void Page_Load(object sender, EventArgs e)
     {
-
         if (Session["loginId"] == null)
         {
-            Response.Redirect("~/Login.aspx");
+            Response.Redirect("../login.aspx");
+        }
+        if (!IsPostBack)
+        {
+            //if (Session["loginId"] == null)
+            //{
+            //    Response.Redirect("../Login.aspx");
+            //}
+            int CreatedBy = Convert.ToInt32(Session["loginId"]);
+            BindBookings(CreatedBy);
+
+            //if (Session["role_id"].ToString() == "3")
+            //{
+            //    lblAgentMessage.Visible = true;
+            //    lblAgentMessage.Text = "Note : Please contact your IATA license provider for ticketing your bookings";
+            //}
+
         }
     }
-    private void BindFlightBooking()
+    private void BindBookings(int CreatedBy)
     {
         try
         {
-            int CreatedBy = Convert.ToInt32(Session["loginId"]);
-            int RoleId = Convert.ToInt32(Session["role_id"]);
-            int CompanyId = Convert.ToInt32(Session["CompanyId"]);
-            DataSet objDs = objBAFlightSearch.GetBookingsByRefNo(txtSearch.Text, CreatedBy, RoleId, CompanyId);
-            if (objDs.Tables[0].Rows.Count > 0)
+            DataSet objDsLatestFile = objBALFileManager.GetLatestFileNo(CreatedBy);
+            string FileNo = string.Empty;
+            if (objDsLatestFile.Tables[0].Rows.Count > 0)
             {
-                gdvFlightBookings.DataSource = objDs;
-                gdvFlightBookings.DataBind();
+                FileNo = objDsLatestFile.Tables[0].Rows[0]["FileNo"].ToString();
+                lblLatestFileNo.Text = FileNo;
+                lblOrderNo.Text = objDsLatestFile.Tables[0].Rows[0]["OrderNo"].ToString();
+                hfTravellerId.Value = objDsLatestFile.Tables[0].Rows[0]["TravellerId"].ToString();
+                hfFileNo.Value = objDsLatestFile.Tables[0].Rows[0]["FileNo"].ToString();
+
+                DataSet objDs = objBALFileManager.GetAllBookingsByFileNo(FileNo);
+                if (objDs.Tables[0].Rows.Count > 0)
+                {
+                    gdvFlightBookings.DataSource = objDs;
+                    gdvFlightBookings.DataBind();
+                }
+                else
+                {
+                    gdvFlightBookings.DataSource = null;
+                    gdvFlightBookings.DataBind();
+                }
+
+                if (objDs.Tables[1].Rows.Count > 0)
+                {
+
+
+                    gdvHotelBooking.DataSource = objDs.Tables[1];
+                    gdvHotelBooking.DataBind();
+                }
+                else
+                {
+                    gdvHotelBooking.DataSource = null;
+                    gdvHotelBooking.DataBind();
+                }
+                if (objDs.Tables[2].Rows.Count > 0)
+                {
+                    txttotalAmount.Text = (Convert.ToDecimal(objDs.Tables[2].Rows[0]["TotalAmount"].ToString()) + 5000).ToString();
+                }
+                if (objDs.Tables[3].Rows.Count > 0)
+                {
+                    txtReceivedAmount.Text = objDs.Tables[3].Rows[0]["ResivedAmount"].ToString();
+                }
+
             }
             else
             {
-                gdvFlightBookings.DataSource = null;
-                gdvFlightBookings.DataBind();
+                btnGenerateOtherBookings.Enabled = false;
             }
+
+            GenerateCars(FileNo);
+
         }
         catch (Exception ex)
         {
             lblMsg.Text = ex.Message;
         }
     }
-    protected void cmdSubmit_Click(object sender, EventArgs e)
+    protected void btnCloseFile_Click(object sender, EventArgs e)
     {
-        BindFlightBooking();
+        Session.Remove("TrvellerId");
+        Session.Remove("FileNo");
+        Response.Redirect("Index.aspx");
     }
+    protected void btnInvoice_Click(object sender, EventArgs e)
+    {
+        string url = "InvoicePdf.aspx?FileNo=" + hfFileNo.Value;
+        string s = "window.open('" + url + "', 'popup_window', 'width=800,height=1000,left=100,top=100,resizable=yes');";
+        ClientScript.RegisterStartupScript(this.GetType(), "script", s, true);
+    }
+    #region FlightBookins
+
+
     protected void gdvFlights_RowCommand(object sender, GridViewCommandEventArgs e)
     {
+
+
 
         string FlightRequestId = e.CommandArgument.ToString();
         if (e.CommandName == "PrintTicket")
@@ -66,6 +127,7 @@ public partial class Admin_FlightbookingSearc : System.Web.UI.Page
         else if (e.CommandName == "GenerateTicket")
         {
             // Response.Redirect("../DinoSales/FlightEticketGenerate.aspx?frid=" + FlightRequestId);
+            Session["returnurl"] = "../Admin/ViewLatestFile.aspx";
             Response.Redirect("../DinoSales/PaymentConfirmation.aspx?frid=" + FlightRequestId);
         }
         else if (e.CommandName == "CancelTicket")
@@ -77,7 +139,10 @@ public partial class Admin_FlightbookingSearc : System.Web.UI.Page
             else
             {
                 objBAFlightSearch.UpdateFlightBookinngResponceStatus(Convert.ToInt32(FlightRequestId), 6);
-                BindFlightBooking();
+
+                int CreatedBy = Convert.ToInt32(Session["loginId"]);
+                BindBookings(CreatedBy);
+
             }
 
         }
@@ -95,10 +160,13 @@ public partial class Admin_FlightbookingSearc : System.Web.UI.Page
             else
             {
                 objBAFlightSearch.UpdateFlightBookinngResponceStatus(Convert.ToInt32(FlightRequestId), 6);
-                BindFlightBooking();
+
+                int CreatedBy = Convert.ToInt32(Session["loginId"]);
+                BindBookings(CreatedBy);
             }
 
         }
+
         else if (e.CommandName == "ViewDetails")
         {
             string url = "ShowBookinginfo.aspx?frid=" + FlightRequestId;
@@ -107,6 +175,7 @@ public partial class Admin_FlightbookingSearc : System.Web.UI.Page
 
         }
     }
+
     protected void gdvFlightBookings_RowDataBound(object sender, GridViewRowEventArgs e)
     {
         try
@@ -119,6 +188,7 @@ public partial class Admin_FlightbookingSearc : System.Web.UI.Page
                 ImageButton imgBtnCancel = e.Row.FindControl("imgBtnCancel") as ImageButton;
                 ImageButton imgbtnCancelBooking = e.Row.FindControl("imgbtnCancelBooking") as ImageButton;
                 Button btnStatus = e.Row.FindControl("btnStatus") as Button;
+
                 if (hfEticketIssue.Value == "4")//Booking confirm
                 {
                     cmdPrintTicket.Enabled = false;
@@ -127,8 +197,10 @@ public partial class Admin_FlightbookingSearc : System.Web.UI.Page
                     imgbtnCancelBooking.Enabled = true;
                     imgbtnCancelBooking.Visible = true;
                     imgBtnCancel.Visible = false;
-
+                    //e.Row.Cells[10].ForeColor = System.Drawing.Color.Black;
+                    //e.Row.Cells[10].BackColor = System.Drawing.Color.Yellow;
                     btnStatus.BackColor = System.Drawing.Color.Yellow;
+
                 }
                 else if (hfEticketIssue.Value == "5")// Eticket Done
                 {
@@ -138,6 +210,8 @@ public partial class Admin_FlightbookingSearc : System.Web.UI.Page
 
                     imgBtnCancel.Visible = true;
                     imgbtnCancelBooking.Visible = false;
+                    //e.Row.Cells[10].ForeColor = System.Drawing.Color.White;
+                    //e.Row.Cells[10].BackColor = System.Drawing.Color.Green;
                     btnStatus.BackColor = System.Drawing.Color.Green;
                 }
 
@@ -146,9 +220,12 @@ public partial class Admin_FlightbookingSearc : System.Web.UI.Page
                     imgGenerateEticket.Enabled = false;
                     cmdPrintTicket.Enabled = true;
                     imgbtnCancelBooking.Visible = false;
+                    imgBtnCancel.Enabled = false;
 
                     imgBtnCancel.Visible = true;
-                    imgBtnCancel.Enabled = true;
+
+                    //e.Row.Cells[10].ForeColor = System.Drawing.Color.White;
+                    //e.Row.Cells[10].BackColor = System.Drawing.Color.Gray;
                     btnStatus.BackColor = System.Drawing.Color.Gray;
                 }
                 if (Session["role_id"].ToString() == "1")
@@ -171,6 +248,7 @@ public partial class Admin_FlightbookingSearc : System.Web.UI.Page
             throw ex;
         }
     }
+
     private void CancelBooking(string BookingRefNo, int FlightRequestId, string TraceId)
     {
         try
@@ -201,6 +279,7 @@ public partial class Admin_FlightbookingSearc : System.Web.UI.Page
             lblMsg.Text = _objBoutility.ShowMessage("danger", "Error", ex.Message);
         }
     }
+
     public string SerializeObject(Object toSerialize)
     {
         XmlSerializer xmlSerializer = new XmlSerializer(toSerialize.GetType());
@@ -212,5 +291,100 @@ public partial class Admin_FlightbookingSearc : System.Web.UI.Page
             xmlSerializer.Serialize(textWriter, toSerialize, ns);
             return textWriter.ToString();
         }
+    }
+    #endregion FlightBookings
+
+
+    #region HotelBookings
+
+
+    protected void gdvHotelBooking_RowCommand(object sender, GridViewCommandEventArgs e)
+    {
+        if (e.CommandName == "PrintInVoice")
+        {
+
+            string HotelBookingId = _objBoutility.Encrypt(e.CommandArgument.ToString(), true);
+            string url = "printhotelInvoice.aspx?reqstId=" + HotelBookingId;
+            string s = "window.open('" + url + "', 'popup_window', 'width=800,height=1000,left=100,top=100,resizable=yes');";
+            ClientScript.RegisterStartupScript(this.GetType(), "script", s, true);
+            //Response.Redirect("Customer.aspx?HotelBookingId=" + HotelBookingId);
+
+        }
+        else
+        {
+            string HotelBookingId = _objBoutility.Encrypt(e.CommandArgument.ToString(), true);
+            string url = "../DinoSales/Cancelation.aspx?reqstId=" + HotelBookingId;
+            string s = "window.open('" + url + "', 'popup_window', 'width=800,height=1000,left=100,top=100,resizable=yes');";
+            ClientScript.RegisterStartupScript(this.GetType(), "script", s, true);
+
+        }
+    }
+    protected void gdvHotelBooking_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        try
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                HiddenField hfStatusId = e.Row.FindControl("hfStatusId") as HiddenField;
+                Button btnStatus = e.Row.FindControl("btnStatus") as Button;
+                ImageButton cmdCancelHotel = e.Row.FindControl("cmdCancelHotel") as ImageButton;
+
+                if (hfStatusId.Value == "4")//Booking confirm
+                {
+
+                    cmdCancelHotel.Enabled = true;
+                    //e.Row.Cells[8].ForeColor = System.Drawing.Color.White;
+                    //e.Row.Cells[8].BackColor = System.Drawing.Color.Green;
+                    btnStatus.BackColor = System.Drawing.Color.Green;
+
+                }
+                else
+                {
+                    cmdCancelHotel.Enabled = false;
+                    btnStatus.BackColor = System.Drawing.Color.Gray;
+                }
+            }
+
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+    #endregion HotelBookings
+
+    #region CarRentals
+    private void GenerateCars(string FileNo)
+    {
+
+        BACarResult objCarResult = new BACarResult();
+        DataSet objDs = objCarResult.GetCarResult("", "", "", "", 0, FileNo, "");
+        if (objDs.Tables[2].Rows.Count > 0)
+        {
+            gvCarBookings.DataSource = objDs.Tables[2];
+            gvCarBookings.DataBind();
+        }
+
+
+    }
+    #endregion CarRentals
+  
+    protected void gvCarBookings_RowCommand(object sender, GridViewCommandEventArgs e)
+    {
+
+        string FlightRequestId = e.CommandArgument.ToString();
+        if (e.CommandName == "PrintInVoice")
+        {
+            string url = "../DinoSales/PrintCarTicket .aspx?reqstId=" + FlightRequestId;
+            string s = "window.open('" + url + "', 'popup_window', 'width=800,height=1000,left=100,top=100,resizable=yes');";
+            ClientScript.RegisterStartupScript(this.GetType(), "script", s, true);
+        }
+    }
+    protected void btnGenerateOtherBookings_Click(object sender, EventArgs e)
+    {
+        Session["TrvellerId"] = hfTravellerId.Value;
+        Session["FileNo"] = hfFileNo.Value;
+        Response.Redirect("../DinoSales/Search.aspx");
     }
 }

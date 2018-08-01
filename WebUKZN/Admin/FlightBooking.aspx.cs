@@ -17,7 +17,7 @@ public partial class Admin_FlightBooking : System.Web.UI.Page
     {
         if (Session["loginId"] == null)
         {
-            Response.Redirect("~/SalesLogin.aspx");
+            Response.Redirect("~/Login.aspx");
         }
         if (!IsPostBack)
         {

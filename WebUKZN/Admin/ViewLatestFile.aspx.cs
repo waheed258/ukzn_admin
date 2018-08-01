@@ -17,7 +17,7 @@ public partial class Admin_ViewLatestFile : System.Web.UI.Page
     {
         if (Session["loginId"] == null)
         {
-            Response.Redirect("../login.aspx");
+            Response.Redirect("../Login.aspx");
         }
         if (!IsPostBack)
         {

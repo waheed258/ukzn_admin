@@ -21,7 +21,7 @@ public partial class Admin_FileManager : System.Web.UI.Page
     {
         if (Session["loginId"] == null)
         {
-            Response.Redirect("~/login.aspx");
+            Response.Redirect("~/Login.aspx");
         }
         if (!IsPostBack)
         {

@@ -35,3 +35,36 @@
 .multiline-txtbox {
        max-height: 40px !important
 }
+.message {
+    line-height: 30px;
+    font-size: 12px;
+    color: #acacac;
+    /*font-weight: bold;*/
+    position: absolute;
+     margin: -20px 37px 0px;
+    left: 0px;
+    right: 0px;
+    text-align: center;
+}
+.title {
+    width: 100%;
+    float: left;
+    margin: -35px 37px 0px;
+    padding: 4px 10px;
+    /*background: #08376a;*/
+    box-sizing: border-box;
+    /*color: #fff;*/
+    border-radius: 4px;
+    font-size: 16px !important;
+}
+.dropdown-menu .image i {
+    border-radius: 35px;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    width: 35px;
+}
+.bg-danger {
+    background: #d2322d;
+    color: white;
+}

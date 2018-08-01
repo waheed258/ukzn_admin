@@ -23,8 +23,9 @@ public partial class Admin_Admin : System.Web.UI.MasterPage
         if (Session["loginId"] != null)
         {
               LabelUserName.Text = Session["loginuser"].ToString();
+              Label1.Text = Session["loginuser"].ToString();
             GetMenu();
-        //      GetAlert();
+              GetAlert();
         }
 
 
@@ -78,68 +79,68 @@ public partial class Admin_Admin : System.Web.UI.MasterPage
         }
         menu.InnerHtml = strMenu;
 
-        //if (objdsmenu.Tables[2].Rows.Count > 0)
-        //{
-        //    string topMenu = string.Empty;
-        //    topMenu += "<li class='divider'></li>";
-        //    foreach (DataRow topmenu in objdsmenu.Tables[2].Rows)
-        //    {
-        //        //  topMenu += "<li><a href=" + topmenu["Url"].ToString() + ">" + topmenu["MenuName"].ToString() + "</a></li>";
+        if (objdsmenu.Tables[2].Rows.Count > 0)
+        {
+            string topMenu = string.Empty;
+            topMenu += "<li class='divider'></li>";
+            foreach (DataRow topmenu in objdsmenu.Tables[2].Rows)
+            {
+                //  topMenu += "<li><a href=" + topmenu["Url"].ToString() + ">" + topmenu["MenuName"].ToString() + "</a></li>";
 
-        //        topMenu += "<li><a role='menuitem' tabindex='-1' href='" + topmenu["Url"].ToString() + "'><i class='fa fa-user'></i>" + topmenu["MenuName"].ToString() + "</a></li>";
-        //    }
+                topMenu += "<li><a role='menuitem' tabindex='-1' href='" + topmenu["Url"].ToString() + "'><i class='fa fa-user'></i>" + topmenu["MenuName"].ToString() + "</a></li>";
+            }
 
-        //    ultopmenu.InnerHtml = topMenu;
-        //}
+            ultopmenu.InnerHtml = topMenu;
+        }
 
     }
-    //private void GetAlert()
-    //{
-    //    StringBuilder strAlert = new StringBuilder();
-
-    //    try
-    //    {
-    //        int CompanyId = Convert.ToInt32(Session["CompanyId"]);
-    //        int RoleID = Convert.ToInt32(Session["role_id"]);
-    //        int UserId = Convert.ToInt32(Session["loginId"]);
-    //        DataSet objDs = _objBAFlightSearch.GetTrueLastDateToTicketAlerts(UserId, RoleID, CompanyId);
-    //        //       lblAlertCount.Text = objDs.Tables[0].Rows.Count.ToString();
-    //        if (objDs.Tables[0].Rows.Count > 0)
-    //        {
-    //            strAlert.Append("<ul>");
-    //            strAlert.Append("<li>");
-    //            strAlert.Append("<a href='#' class='clearfix'>");
-    //            strAlert.Append("<div class='image'>");
-    //            strAlert.Append("<i class='fa fa-clock-o bg-danger'></i>");
-    //            strAlert.Append("</div>");
-    //            strAlert.Append("<span class='title'>E Ticket Need To Done</span>");
-    //            strAlert.Append("<span class='message'>Total Pending" + objDs.Tables[0].Rows.Count + "</span>");
-    //            strAlert.Append("</a>");
-    //            strAlert.Append("</li>");
-    //            strAlert.Append("</ul>");
-
-    //            strAlert.Append("<hr />");
-
-    //            strAlert.Append("<div class='text-right'>");
-    //            strAlert.Append("<a href='LastDateToTicket.aspx' class='view-more'>View All</a>");
-    //            strAlert.Append("</div>");
-    //            topalert.InnerHtml = strAlert.ToString();
-
-    //        }
-
-    //    }
-    //    catch (Exception ex)
-    //    {
-
-    //    }
-    //}
-
-    protected void btnLogOut_Click(object sender, EventArgs e)
+    private void GetAlert()
     {
-        int LogoutResult = objBalUser.UserLoginHistoryInsertUpdate(Convert.ToInt32(Session["UserMasterId"].ToString()), "", "Update");
-        if (LogoutResult >= 1)
+        StringBuilder strAlert = new StringBuilder();
+
+        try
         {
-            Response.Redirect("Login.aspx");
+            int CompanyId = Convert.ToInt32(Session["CompanyId"]);
+            int RoleID = Convert.ToInt32(Session["role_id"]);
+            int UserId = Convert.ToInt32(Session["loginId"]);
+            DataSet objDs = _objBAFlightSearch.GetTrueLastDateToTicketAlerts(UserId, RoleID, CompanyId);
+            lblAlertCount.Text = objDs.Tables[0].Rows.Count.ToString();
+            if (objDs.Tables[0].Rows.Count > 0)
+            {
+                //strAlert.Append("<ul>");
+                strAlert.Append("<li>");
+                strAlert.Append("<a href='#' class='clearfix'>");
+                strAlert.Append("<div class='image'>");
+                strAlert.Append("<i class='fa fa-clock-o bg-danger'></i>");
+                strAlert.Append("</div>");
+                strAlert.Append("<span class='title'>E Ticket Need To Done</span>");
+                strAlert.Append("<span class='message'>Total Pending" + objDs.Tables[0].Rows.Count + "</span>");
+                strAlert.Append("</a>");
+                strAlert.Append("</li>");
+               // strAlert.Append("</ul>");
+
+                strAlert.Append("<hr />");
+
+                strAlert.Append("<div class='text-right'>");
+                strAlert.Append("<a href='LastDateToTicket.aspx' class='view-more'>View All</a>");
+                strAlert.Append("</div>");
+                topalert.InnerHtml = strAlert.ToString();
+
+            }
+
+        }
+        catch (Exception ex)
+        {
+
         }
     }
+
+    //protected void btnLogOut_Click(object sender, EventArgs e)
+    //{
+    //    int LogoutResult = objBalUser.UserLoginHistoryInsertUpdate(Convert.ToInt32(Session["UserMasterId"].ToString()), "", "Update");
+    //    if (LogoutResult >= 1)
+    //    {
+    //        Response.Redirect("Login.aspx");
+    //    }
+    //}
 }

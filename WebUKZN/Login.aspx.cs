@@ -59,7 +59,7 @@ public partial class Login : System.Web.UI.Page
                 Session["UserEmail"] = objDs.Tables[0].Rows[0]["UserEmail"].ToString().ToUpper();
                 Session["UserPhone"] = objDs.Tables[0].Rows[0]["UserPhone"].ToString().ToUpper();
 
-                Response.Redirect("SalesAdmin/Index.aspx");
+                Response.Redirect("Admin/Index.aspx");
             }
             else
             {

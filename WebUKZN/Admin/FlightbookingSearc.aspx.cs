@@ -13,39 +13,26 @@ using iTextSharp.text.html;
 using System.IO;
 using iTextSharp.text.html.simpleparser;
 
-public partial class Admin_FindFlightBookings : System.Web.UI.Page
+public partial class Admin_FlightbookingSearc : System.Web.UI.Page
 {
     BAFlightSearch objBAFlightSearch = new BAFlightSearch();
-
     BOUtiltiy _objBoutility = new BOUtiltiy();
-
     protected void Page_Load(object sender, EventArgs e)
     {
+
         if (Session["loginId"] == null)
         {
             Response.Redirect("~/SalesLogin.aspx");
         }
-        if (!IsPostBack)
-        {
-            txtStartDate.Text = _objBoutility.ConvertDateFormat(DateTime.Now.ToString());
-            txtTodate.Text = _objBoutility.ConvertDateFormat(DateTime.Now.ToString());
-            BindFlightBooking();
-        }
-    }
-    public override void VerifyRenderingInServerForm(Control control)
-    {
-        /* Confirms that an HtmlForm control is rendered for the specified ASP.NET
-           server control at run time. */
     }
     private void BindFlightBooking()
     {
         try
         {
-            // DataSet objDs = objBAFlightSearch.GetFlightBookingResponce(0);
             int CreatedBy = Convert.ToInt32(Session["loginId"]);
             int RoleId = Convert.ToInt32(Session["role_id"]);
             int CompanyId = Convert.ToInt32(Session["CompanyId"]);
-            DataSet objDs = objBAFlightSearch.GetBookingsByDates(Convert.ToInt32(Session["loginId"]), txtStartDate.Text, txtTodate.Text, RoleId, CompanyId);
+            DataSet objDs = objBAFlightSearch.GetBookingsByRefNo(txtSearch.Text, CreatedBy, RoleId, CompanyId);
             if (objDs.Tables[0].Rows.Count > 0)
             {
                 gdvFlightBookings.DataSource = objDs;
@@ -62,42 +49,13 @@ public partial class Admin_FindFlightBookings : System.Web.UI.Page
             lblMsg.Text = ex.Message;
         }
     }
-    protected void btnExportPdf_Click(object sender, EventArgs e)
+    protected void cmdSubmit_Click(object sender, EventArgs e)
     {
-        try
-        {
-            using (StringWriter sw = new StringWriter())
-            {
-                using (HtmlTextWriter hw = new HtmlTextWriter(sw))
-                {
-                    //To Export all pages
-                    gdvFlightBookings.AllowPaging = false;
-                    BindFlightBooking();
-
-                    gdvFlightBookings.RenderControl(hw);
-                    StringReader sr = new StringReader(sw.ToString());
-                    Document pdfDoc = new Document(PageSize.A2, 10f, 10f, 10f, 0f);
-                    HTMLWorker htmlparser = new HTMLWorker(pdfDoc);
-                    PdfWriter.GetInstance(pdfDoc, Response.OutputStream);
-                    pdfDoc.Open();
-                    htmlparser.Parse(sr);
-                    pdfDoc.Close();
-
-                    Response.ContentType = "application/pdf";
-                    Response.AddHeader("content-disposition", "attachment;filename=SalesReport_" + txtStartDate.Text + "_" + txtTodate.Text + ".pdf");
-                    Response.Cache.SetCacheability(HttpCacheability.NoCache);
-                    Response.Write(pdfDoc);
-                    Response.End();
-                }
-            }
-        }
-        catch (Exception ex)
-        {
-            lblMsg.Text = _objBoutility.ShowMessage("danger", "Error", ex.Message);
-        }
+        BindFlightBooking();
     }
     protected void gdvFlights_RowCommand(object sender, GridViewCommandEventArgs e)
     {
+
         string FlightRequestId = e.CommandArgument.ToString();
         if (e.CommandName == "PrintTicket")
         {
@@ -108,7 +66,6 @@ public partial class Admin_FindFlightBookings : System.Web.UI.Page
         else if (e.CommandName == "GenerateTicket")
         {
             // Response.Redirect("../DinoSales/FlightEticketGenerate.aspx?frid=" + FlightRequestId);
-            Session["returnurl"] = "../Admin/FindFlightBookings.aspx";
             Response.Redirect("../DinoSales/PaymentConfirmation.aspx?frid=" + FlightRequestId);
         }
         else if (e.CommandName == "CancelTicket")
@@ -150,52 +107,6 @@ public partial class Admin_FindFlightBookings : System.Web.UI.Page
 
         }
     }
-    private void CancelBooking(string BookingRefNo, int FlightRequestId, string TraceId)
-    {
-        try
-        {
-            Utilitys.FlightSearchXmlParsing _objFlightSearchXmlParsing = new Utilitys.FlightSearchXmlParsing();
-            uAPIClassLib.UniversalReference.UniversalRecordCancelRsp objCancleResponce = _objFlightSearchXmlParsing.AirTicketCancel(BookingRefNo, TraceId);
-            if (objCancleResponce != null)
-            {
-                bool CancelStatus = false;
-                string CancelInfoType = string.Empty;
-                string CancelMessage = string.Empty;
-                foreach (uAPIClassLib.UniversalReference.ProviderReservationStatus objProviderReservationStatus in objCancleResponce.ProviderReservationStatus)
-                {
-                    CancelStatus = objProviderReservationStatus.Cancelled;
-                    CancelInfoType = objProviderReservationStatus.CancelInfo.Type.ToString();
-                    CancelMessage = objProviderReservationStatus.CancelInfo.Value;
-
-                }
-                string resXml = SerializeObject(objCancleResponce);
-                if (CancelStatus)
-                {
-                    objBAFlightSearch.UpdateFlightBookinngResponceCancelStatus(FlightRequestId, resXml, 8, 0, 0, Convert.ToInt32(Session["loginId"]));
-                    BindFlightBooking();
-                }
-                else
-                    lblMsg.Text = _objBoutility.ShowMessage("danger", CancelInfoType, CancelMessage);
-            }
-        }
-        catch (Exception ex)
-        {
-            lblMsg.Text = _objBoutility.ShowMessage("danger", "Error", ex.Message);
-        }
-    }
-
-    public string SerializeObject(Object toSerialize)
-    {
-        XmlSerializer xmlSerializer = new XmlSerializer(toSerialize.GetType());
-
-        using (uAPIClassLib.Utf8StringWriter textWriter = new uAPIClassLib.Utf8StringWriter())
-        {
-            XmlSerializerNamespaces ns = new XmlSerializerNamespaces();
-            ns.Add("", "");
-            xmlSerializer.Serialize(textWriter, toSerialize, ns);
-            return textWriter.ToString();
-        }
-    }
     protected void gdvFlightBookings_RowDataBound(object sender, GridViewRowEventArgs e)
     {
         try
@@ -216,8 +127,7 @@ public partial class Admin_FindFlightBookings : System.Web.UI.Page
                     imgbtnCancelBooking.Enabled = true;
                     imgbtnCancelBooking.Visible = true;
                     imgBtnCancel.Visible = false;
-                    //e.Row.Cells[9].ForeColor = System.Drawing.Color.Black;
-                    //e.Row.Cells[9].BackColor = System.Drawing.Color.Yellow;
+
                     btnStatus.BackColor = System.Drawing.Color.Yellow;
                 }
                 else if (hfEticketIssue.Value == "5")// Eticket Done
@@ -228,8 +138,6 @@ public partial class Admin_FindFlightBookings : System.Web.UI.Page
 
                     imgBtnCancel.Visible = true;
                     imgbtnCancelBooking.Visible = false;
-                    //e.Row.Cells[9].ForeColor = System.Drawing.Color.White;
-                    //e.Row.Cells[9].BackColor = System.Drawing.Color.Green;
                     btnStatus.BackColor = System.Drawing.Color.Green;
                 }
 
@@ -241,8 +149,6 @@ public partial class Admin_FindFlightBookings : System.Web.UI.Page
 
                     imgBtnCancel.Visible = true;
                     imgBtnCancel.Enabled = true;
-                    //e.Row.Cells[9].ForeColor = System.Drawing.Color.White;
-                    //e.Row.Cells[9].BackColor = System.Drawing.Color.Gray;
                     btnStatus.BackColor = System.Drawing.Color.Gray;
                 }
                 if (Session["role_id"].ToString() == "1")
@@ -265,8 +171,46 @@ public partial class Admin_FindFlightBookings : System.Web.UI.Page
             throw ex;
         }
     }
-    protected void cmdSubmit_Click(object sender, EventArgs e)
+    private void CancelBooking(string BookingRefNo, int FlightRequestId, string TraceId)
     {
-        BindFlightBooking();
+        try
+        {
+            Utilitys.FlightSearchXmlParsing _objFlightSearchXmlParsing = new Utilitys.FlightSearchXmlParsing();
+            uAPIClassLib.UniversalReference.UniversalRecordCancelRsp objCancleResponce = _objFlightSearchXmlParsing.AirTicketCancel(BookingRefNo, TraceId);
+            if (objCancleResponce != null)
+            {
+                bool CancelStatus = false;
+                string CancelInfoType = string.Empty;
+                string CancelMessage = string.Empty;
+                foreach (uAPIClassLib.UniversalReference.ProviderReservationStatus objProviderReservationStatus in objCancleResponce.ProviderReservationStatus)
+                {
+                    CancelStatus = objProviderReservationStatus.Cancelled;
+                    CancelInfoType = objProviderReservationStatus.CancelInfo.Type.ToString();
+                    CancelMessage = objProviderReservationStatus.CancelInfo.Value;
+
+                }
+                string resXml = SerializeObject(objCancleResponce);
+                if (CancelStatus)
+                    objBAFlightSearch.UpdateFlightBookinngResponceCancelStatus(FlightRequestId, resXml, 8, 0, 0, Convert.ToInt32(Session["loginId"]));
+                else
+                    lblMsg.Text = _objBoutility.ShowMessage("danger", CancelInfoType, CancelMessage);
+            }
+        }
+        catch (Exception ex)
+        {
+            lblMsg.Text = _objBoutility.ShowMessage("danger", "Error", ex.Message);
+        }
+    }
+    public string SerializeObject(Object toSerialize)
+    {
+        XmlSerializer xmlSerializer = new XmlSerializer(toSerialize.GetType());
+
+        using (uAPIClassLib.Utf8StringWriter textWriter = new uAPIClassLib.Utf8StringWriter())
+        {
+            XmlSerializerNamespaces ns = new XmlSerializerNamespaces();
+            ns.Add("", "");
+            xmlSerializer.Serialize(textWriter, toSerialize, ns);
+            return textWriter.ToString();
+        }
     }
 }

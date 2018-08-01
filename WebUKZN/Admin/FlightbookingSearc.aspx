@@ -1,102 +1,50 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/Admin.master" AutoEventWireup="true" CodeFile="FindFlightBookings.aspx.cs" Inherits="Admin_FindFlightBookings" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/Admin.master" AutoEventWireup="true" CodeFile="FlightbookingSearc.aspx.cs" Inherits="Admin_FlightbookingSearc" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.js"></script>
-    <%-- <link href="css/wickedpicker.css" rel="stylesheet" />--%>
-
-    <script src="js/wickedpicker.js"></script>
-    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/themes/smoothness/jquery-ui.css" />
-    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
-    <script type="text/javascript">
-
-        $(document).ready(function () {
-            DatePickerSet();
-        });
-
-
-        function DatePickerSet() {
-            $("#ContentPlaceHolder1_txtStartDate").datepicker({
-
-                numberOfMonths: 1,
-                dateFormat: 'yy-mm-dd',
-                autoclose: true,
-                onSelect: function (selected) {
-                    var date2 = $('#ContentPlaceHolder1_txtStartDate').datepicker('getDate');
-                    date2.setDate(date2.getDate());
-                    //  $('#ctl00_ContentPlaceHolder1_txtEventEndDate').datepicker('setDate', date2);
-                    $('#ContentPlaceHolder1_txtTodate').datepicker('option', 'minDate', date2);
-                }
-            }).attr('readonly', 'true');;
-
-            $("#ContentPlaceHolder1_txtTodate").datepicker({
-
-                dateFormat: 'yy-mm-dd',
-                numberOfMonths: 1,
-                autoclose: true,
-                onSelect: function (selected) {
-                    var dt = new Date(selected);
-                    dt.setDate(dt.getDate());
-
-                }
-            }).attr('readonly', 'true');
-        }
-
-    </script>
-
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    <!-- Content Header (Page header) -->
     <section class="content-header">
-
-        <h1>All Flight Bookings</h1>
+        <h1>Flight Bookings
+       
+               
+        </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
             <li><a href="#">Settings</a></li>
-            <li class="active">AllFlightBookings</li>
+            <li class="active">FlightbookingSearch</li>
         </ol>
     </section>
+    <asp:Label ID="lblMsg" runat="server"></asp:Label>
     <section class="content">
-        <asp:Label ID="lblMsg" runat="server"></asp:Label>
         <div class="row">
             <div class="col-md-12">
                 <div class="box">
                     <div class="box-header with-border">
                         <h3 class="box-title"></h3>
                     </div>
+                    <!-- /.box-header -->
                     <div class="box-body form-horizontal">
                         <div class="form-group">
-
-                            <div class="col-sm-2">
+                            <div class="col-sm-3">
                                 <label class="control-label">
-                                    From Date</label>
+                                    Booking Ref/Email/Phone no</label>
                             </div>
-                            <div class="col-sm-2">
+                            <div class="col-sm-3">
 
-                                <asp:TextBox ID="txtStartDate" runat="server" class="form-control" />
-                                <asp:RequiredFieldValidator ControlToValidate="txtStartDate" runat="server" ID="rfvtxtStartDate"
+                                <asp:TextBox ID="txtSearch" runat="server" class="form-control" />
+                                <asp:RequiredFieldValidator ControlToValidate="txtSearch" runat="server" ID="rfvtxtSearch"
                                     ValidationGroup="subbmit" ErrorMessage="Enter From Date." Text="Enter From Date."
                                     class="validationred" Display="Dynamic" />
                             </div>
                             <div class="col-sm-1">
                             </div>
-                            <div class="col-sm-2">
-                                <label class="control-label">
-                                    To Date
-                                </label>
-                            </div>
-                            <div class="col-sm-2">
-                                <asp:TextBox ID="txtTodate" runat="server" class="form-control" />
-                                <asp:RequiredFieldValidator ControlToValidate="txtTodate" runat="server" ID="rfvtxtTodate"
-                                    ValidationGroup="subbmit" ErrorMessage="Enter To Date." Text="Enter To Date."
-                                    class="validationred" Display="Dynamic" />
-                            </div>
-                            <div class="col-sm-1">
-                            </div>
+
 
                             <div class="col-sm-2">
                                 <asp:Button runat="server" ID="cmdSubmit" class="btn btn-primary green" ValidationGroup="subbmit"
                                     Text="Submit" OnClick="cmdSubmit_Click" />
-                                <asp:Button runat="server" ID="btnExportPdf" class="btn btn-primary green"
-                                    Text="PDF" OnClick="btnExportPdf_Click" />
+
                             </div>
 
                         </div>
@@ -106,8 +54,7 @@
                             DataKeyNames="FlightRequestId"
                             AutoGenerateColumns="False"
                             Width="100%" PageSize="100" usecustompager="true" OnRowCommand="gdvFlights_RowCommand" OnRowDataBound="gdvFlightBookings_RowDataBound">
-
-                            <PagerSettings PreviousPageText="&laquo; previous" NextPageText="next &raquo;" PageButtonCount="3" />
+                            <PagerStyle BackColor="#efefef" ForeColor="black" HorizontalAlign="Left" CssClass="pagination1" />
                             <RowStyle CssClass="gradeA odd" />
                             <AlternatingRowStyle CssClass="gradeA even" />
                             <Columns>
@@ -120,7 +67,7 @@
                                         <%# Container.DataItemIndex+1 %>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Agent / Consultant" SortExpression="UserName">
+                                <asp:TemplateField HeaderText="Agent / Consultant Name" SortExpression="UserName">
                                     <ItemTemplate>
                                         <%#Eval("UserName")%>
                                     </ItemTemplate>
@@ -130,32 +77,21 @@
                                         <%#Eval("BookingDate")%>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="PNR" SortExpression="PNR">
-                                    <ItemTemplate>
-                                        <%#Eval("PNR")%>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Airline RefNo" SortExpression="AirlineRefNo">
-                                    <ItemTemplate>
-                                        <%#Eval("AirlineRefNo")%>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Name" SortExpression="PaxName">
+                                <asp:TemplateField HeaderText="Traveller Name" SortExpression="PaxName">
                                     <ItemTemplate>
                                         <%#Eval("PaxName")%>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Email" SortExpression="PaxEmail">
+                                <asp:TemplateField HeaderText="Traveller Email" SortExpression="PaxEmail">
                                     <ItemTemplate>
                                         <%#Eval("PaxEmail")%>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Phone" SortExpression="PaxMobile">
+                                <asp:TemplateField HeaderText="Traveller Phone" SortExpression="PaxMobile">
                                     <ItemTemplate>
                                         <%#Eval("PaxMobile")%>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-
                                 <asp:BoundField DataField="Fromcode" HeaderText="From">
                                     <ItemStyle HorizontalAlign="Center" />
                                     <HeaderStyle HorizontalAlign="Center" />
@@ -183,7 +119,7 @@
                                         </table>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField>
+                                <asp:TemplateField HeaderText="Actions">
                                     <ItemTemplate>
                                         <table>
                                             <tr>
@@ -219,13 +155,9 @@
                         </asp:GridView>
                     </div>
 
-
                 </div>
             </div>
         </div>
-
-
     </section>
-
 </asp:Content>
 

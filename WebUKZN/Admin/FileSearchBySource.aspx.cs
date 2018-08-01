@@ -19,7 +19,7 @@ public partial class Admin_FileSearchBySource : System.Web.UI.Page
 
         if (Session["loginId"] == null)
         {
-            Response.Redirect("~/SalesLogin.aspx");
+            Response.Redirect("~/Login.aspx");
             return;
         }
     }

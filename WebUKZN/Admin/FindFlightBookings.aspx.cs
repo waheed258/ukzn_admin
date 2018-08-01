@@ -23,7 +23,7 @@ public partial class Admin_FindFlightBookings : System.Web.UI.Page
     {
         if (Session["loginId"] == null)
         {
-            Response.Redirect("~/SalesLogin.aspx");
+            Response.Redirect("~/Login.aspx");
         }
         if (!IsPostBack)
         {

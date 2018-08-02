@@ -87,7 +87,7 @@ public partial class Admin_Admin : System.Web.UI.MasterPage
             {
                 //  topMenu += "<li><a href=" + topmenu["Url"].ToString() + ">" + topmenu["MenuName"].ToString() + "</a></li>";
 
-                topMenu += "<li><a role='menuitem' tabindex='-1' href='" + topmenu["Url"].ToString() + "'><i class='fa fa-user'></i>" + topmenu["MenuName"].ToString() + "</a></li>";
+                topMenu += "<li class='userprofile'><a role='menuitem'  tabindex='-1' href='" + topmenu["Url"].ToString() + "'><i class='fa fa-user'></i>" + topmenu["MenuName"].ToString() + "</a></li>";
             }
 
             ultopmenu.InnerHtml = topMenu;

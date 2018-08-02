@@ -4,8 +4,19 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
         <!-- Content Header (Page header) -->
+     <!-- Content Header (Page header) -->
+
         <section class="content-header">
+           
+            <h3>Flight Bookings</h3>
+
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
+                <li><a href="#">Settings</a></li>
+                <li class="active">Flight Bookings</li>
+            </ol>
         </section>
+
         <asp:Label ID="lblMsg" runat="server"></asp:Label>
         <section class="content">
             <div class="row">

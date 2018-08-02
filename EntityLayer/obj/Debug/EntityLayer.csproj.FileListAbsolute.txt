@@ -9,6 +9,5 @@ C:\Users\DINH0031\Desktop\latest\UKZN\EntityLayer\obj\Debug\EntityLayer.pdb
 C:\Users\DINH0031\Desktop\latest\UKZN\EntityLayer\obj\Debug\EntityLayer.csprojResolveAssemblyReference.cache
 F:\GitHub\ukzn_admin\EntityLayer\bin\Debug\EntityLayer.dll
 F:\GitHub\ukzn_admin\EntityLayer\bin\Debug\EntityLayer.pdb
-F:\GitHub\ukzn_admin\EntityLayer\obj\Debug\EntityLayer.csprojResolveAssemblyReference.cache
 F:\GitHub\ukzn_admin\EntityLayer\obj\Debug\EntityLayer.dll
 F:\GitHub\ukzn_admin\EntityLayer\obj\Debug\EntityLayer.pdb

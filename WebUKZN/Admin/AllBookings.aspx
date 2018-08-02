@@ -1,9 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/Admin.master" AutoEventWireup="true" CodeFile="AllBookings.aspx.cs" Inherits="Admin_AllBookings" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-      <!-- Content Header (Page header) -->
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>All bookings</h1>
         <ol class="breadcrumb">
@@ -77,129 +77,137 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <asp:GridView ID="gdvFlightBookings" runat="server" AllowPaging="true" EmptyDataText="No Bookings Found"
-                                    CssClass="table table-bordered table-striped mb-none dataTable no-footer" DataKeyNames="FlightRequestId"
-                                    AutoGenerateColumns="False"
-                                    Width="100%" PageSize="100" usecustompager="true" OnRowCommand="gdvFlights_RowCommand" OnRowDataBound="gdvFlightBookings_RowDataBound">
+                                <div class="col-sm-12">
+                                    <asp:GridView ID="gdvFlightBookings" runat="server" AllowPaging="true" EmptyDataText="No Bookings Found"
+                                        CssClass="table-bordered table-striped mb-none dataTable no-footer" DataKeyNames="FlightRequestId"
+                                        AutoGenerateColumns="False"
+                                        PageSize="100" usecustompager="true" OnRowCommand="gdvFlights_RowCommand" OnRowDataBound="gdvFlightBookings_RowDataBound">
 
-                                    <RowStyle CssClass="gradeA odd" />
-                                    <AlternatingRowStyle CssClass="gradeA even" />
-                                    <Columns>
-                                        <asp:TemplateField HeaderText="SN">
-                                            <ItemTemplate>
-                                                <asp:HiddenField ID="hfEticketIssue" runat="server" Value='<%#Eval("Booking_Status")%>' />
-                                                <asp:HiddenField ID="hfBookingRef" runat="server" Value='<%#Eval("BookingRefNo")%>' />
-                                                <asp:HiddenField ID="hfTraceId" runat="server" Value='<%#Eval("TraceId")%>' />
-                                                <%# Container.DataItemIndex+1 %>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Booking User" SortExpression="UserName">
-                                            <ItemTemplate>
-                                                <%#Eval("UserName")%>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Booking Date" SortExpression="BookingDate">
-                                            <ItemTemplate>
-                                                <%#Eval("BookingDate")%>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="PNR" SortExpression="PNR">
-                                            <ItemTemplate>
-                                                <%#Eval("PNR")%>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Airline RefNo" SortExpression="AirlineRefNo">
-                                            <ItemTemplate>
-                                                <%#Eval("AirlineRefNo")%>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Passenger Name" SortExpression="PaxName">
-                                            <ItemTemplate>
-                                                <%#Eval("PaxName")%>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Passenger Email" SortExpression="PaxEmail">
-                                            <ItemTemplate>
-                                                <%#Eval("PaxEmail")%>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Passenger Phone" SortExpression="PaxMobile">
-                                            <ItemTemplate>
-                                                <%#Eval("PaxMobile")%>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:BoundField DataField="Fromcode" HeaderText="From">
-                                            <ItemStyle HorizontalAlign="Center" />
-                                            <HeaderStyle HorizontalAlign="Center" />
-                                        </asp:BoundField>
-                                        <asp:BoundField DataField="ToCode" HeaderText="To">
-                                            <ItemStyle HorizontalAlign="Center" />
-                                            <HeaderStyle HorizontalAlign="Center" />
-                                        </asp:BoundField>
-                                        <asp:TemplateField HeaderText="Journey Date" SortExpression="FlightDate">
-                                            <ItemTemplate>
-                                                <%#Eval("FlightDate")%>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Total Price" SortExpression="Amount">
-                                            <ItemTemplate>
-                                                <%#Eval("Amount")%>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Status" SortExpression="ticketstatus">
-                                            <ItemTemplate>
+                                        <RowStyle CssClass="gradeA odd" />
+                                        <AlternatingRowStyle CssClass="gradeA even" />
+                                        <Columns>
 
-                                                <table>
-                                                    <tr>
-                                                        <td>
-                                                            <asp:Button ID="btnStatus" runat="server" Style="height: 18px; width: 25px; border-radius: 6px;" />
-                                                        </td>
-                                                        <td>
-                                                            <%#Eval("ticketstatus")%>
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Actions">
-                                            <ItemTemplate>
-                                                <table>
-                                                    <tr>
-                                                        <td>
-                                                            <asp:ImageButton ID="imgGenerateEticket" runat="server" ImageUrl="~/images/Air-tickets-icon.png" Height="25" OnClientClick="return confirm('Are you sure generate E-ticket?');" ToolTip="Generate Eticket"
-                                                                Width="25" CommandName="GenerateTicket" CommandArgument='<%# Eval("FlightRequestId") %>' Enabled="false" />
-                                                        </td>
-                                                        <td>
-                                                            <asp:ImageButton ID="cmdPrintTicket" runat="server" ImageUrl="~/images/icon-print.png" Height="25" ToolTip="Print E-ticket"
-                                                                Width="25" CommandName="PrintTicket" CommandArgument='<%# Eval("FlightRequestId") %>' Enabled="false" />
-                                                        </td>
-                                                        <td>
-                                                            <asp:ImageButton ID="imgBtnCancel" Visible="false" runat="server" ImageUrl="~/images/delete.png" Height="25" ToolTip="Cancel E-ticket"
-                                                                Width="25" CommandName="CancelTicket" OnClientClick="return confirm('Are you sure cancel E-ticket?');" CommandArgument='<%# Eval("FlightRequestId") %>' Enabled="false" />
-                                                        </td>
-                                                        <td>
-                                                            <asp:ImageButton ID="imgbtnCancelBooking" Visible="false" runat="server" ImageUrl="~/images/delete.png" Height="25" ToolTip="Cancel Booking"
-                                                                Width="25" CommandName="BookingCancel" OnClientClick="return confirm('Are you sure cancel Booking?');" CommandArgument='<%# Eval("FlightRequestId") %>' Enabled="false" />
-                                                        </td>
-                                                        <td>
-                                                            <asp:ImageButton ID="imgBtnViewDtls" runat="server" ImageUrl="~/images/ViewDtls.png" Height="25" ToolTip="View Details"
-                                                                Width="25" CommandName="ViewDetails" CommandArgument='<%# Eval("FlightRequestId") %>' />
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="SN">
+                                               
+                                                <ItemTemplate>
+                                                    <asp:HiddenField ID="hfEticketIssue" runat="server" Value='<%#Eval("Booking_Status")%>' />
+                                                    <asp:HiddenField ID="hfBookingRef" runat="server" Value='<%#Eval("BookingRefNo")%>' />
+                                                    <asp:HiddenField ID="hfTraceId" runat="server" Value='<%#Eval("TraceId")%>' />
+                                                    <%# Container.DataItemIndex+1 %>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Booking User" SortExpression="UserName">
+                                                <ItemTemplate>
+                                                    <%#Eval("UserName")%>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Booking Date" SortExpression="BookingDate">
+                                                <ItemTemplate>
+                                                    <%#Eval("BookingDate")%>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="PNR" SortExpression="PNR">
+                                                <ItemTemplate>
+                                                    <%#Eval("PNR")%>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Airline RefNo" SortExpression="AirlineRefNo">
+                                                <ItemTemplate>
+                                                    <%#Eval("AirlineRefNo")%>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Passenger Name" SortExpression="PaxName">
+                                                <ItemTemplate>
+                                                    <%#Eval("PaxName")%>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Passenger Email" SortExpression="PaxEmail" >
+ 
+                                                <ItemTemplate>
+                                                   <%-- <asp:Label ID="Label1" runat="server" Width="20px"
+                                                Text='<%# Bind("PaxEmail") %>'></asp:Label>--%>
+                                                    <%#Eval("PaxEmail")%>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Passenger Phone" SortExpression="PaxMobile">
+                                                <ItemTemplate>
+                                                    <%#Eval("PaxMobile")%>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:BoundField DataField="Fromcode" HeaderText="From">
+                                                <ItemStyle HorizontalAlign="Center" />
+                                                <HeaderStyle HorizontalAlign="Center" />
+                                            </asp:BoundField>
+                                            <asp:BoundField DataField="ToCode" HeaderText="To">
+                                                <ItemStyle HorizontalAlign="Center" />
+                                                <HeaderStyle HorizontalAlign="Center" />
+                                            </asp:BoundField>
+                                            <asp:TemplateField HeaderText="Journey Date" SortExpression="FlightDate">
+                                                <ItemTemplate>
+                                                    <%#Eval("FlightDate")%>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Total Price" SortExpression="Amount">
+                                                <ItemTemplate>
+                                                    <%#Eval("Amount")%>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Status" SortExpression="ticketstatus">
+                                                <ItemTemplate>
 
-                                    </Columns>
-                                </asp:GridView>
+                                                    <table>
+                                                        <tr>
+                                                            <td>
+                                                                <asp:Button ID="btnStatus" runat="server" Style="height: 18px; width: 25px; border-radius: 6px;" />
+                                                            </td>
+                                                            <td>
+                                                                <%#Eval("ticketstatus")%>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Actions">
+                                                <ItemTemplate>
+                                                    <table>
+                                                        <tr>
+                                                            <td>
+                                                                <asp:ImageButton ID="imgGenerateEticket" runat="server" ImageUrl="~/images/Air-tickets-icon.png" Height="25" OnClientClick="return confirm('Are you sure generate E-ticket?');" ToolTip="Generate Eticket"
+                                                                    Width="25" CommandName="GenerateTicket" CommandArgument='<%# Eval("FlightRequestId") %>' Enabled="false" />
+                                                            </td>
+                                                            <td>
+                                                                <asp:ImageButton ID="cmdPrintTicket" runat="server" ImageUrl="~/images/icon-print.png" Height="25" ToolTip="Print E-ticket"
+                                                                    Width="25" CommandName="PrintTicket" CommandArgument='<%# Eval("FlightRequestId") %>' Enabled="false" />
+                                                            </td>
+                                                            <td>
+                                                                <asp:ImageButton ID="imgBtnCancel" Visible="false" runat="server" ImageUrl="~/images/delete.png" Height="25" ToolTip="Cancel E-ticket"
+                                                                    Width="25" CommandName="CancelTicket" OnClientClick="return confirm('Are you sure cancel E-ticket?');" CommandArgument='<%# Eval("FlightRequestId") %>' Enabled="false" />
+                                                            </td>
+                                                            <td>
+                                                                <asp:ImageButton ID="imgbtnCancelBooking" Visible="false" runat="server" ImageUrl="~/images/delete.png" Height="25" ToolTip="Cancel Booking"
+                                                                    Width="25" CommandName="BookingCancel" OnClientClick="return confirm('Are you sure cancel Booking?');" CommandArgument='<%# Eval("FlightRequestId") %>' Enabled="false" />
+                                                            </td>
+                                                            <td>
+                                                                <asp:ImageButton ID="imgBtnViewDtls" runat="server" ImageUrl="~/images/ViewDtls.png" Height="25" ToolTip="View Details"
+                                                                    Width="25" CommandName="ViewDetails" CommandArgument='<%# Eval("FlightRequestId") %>' />
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+
+                                        </Columns>
+                                    </asp:GridView>
+                                </div>
                             </div>
                             <br />
                             <br />
                             <asp:Panel ID="pnlHotelBookings" runat="server" Visible="false">
                                 <div class="form-group">
+                                     <div class="col-sm-12">
                                     <label>Hotel Bookings</label>
                                     <asp:GridView ID="gdvHotelBooking" runat="server" AllowSorting="true" EmptyDataText="No Bookings Found"
-                                        AutoGenerateColumns="False" CssClass="table table-bordered table-striped mb-none dataTable no-footer"
+                                        AutoGenerateColumns="False" CssClass=" table-bordered table-striped mb-none dataTable no-footer"
                                         Width="100%" PageSize="4" usecustompager="true" OnRowCommand="gdvHotelBooking_RowCommand" OnRowDataBound="gdvHotelBooking_RowDataBound">
 
                                         <RowStyle CssClass="gradeA odd" />
@@ -280,7 +288,7 @@
 
 
                                     <asp:GridView ID="gdvOnlineHotelBookings" runat="server" EmptyDataText="No Bookings Found"
-                                        AutoGenerateColumns="False" CssClass="table table-bordered table-striped mb-none dataTable no-footer"
+                                        AutoGenerateColumns="False" CssClass=" table-bordered table-striped mb-none dataTable no-footer"
                                         Width="100%" OnRowCommand="gdvOnlineHotelBookings_RowCommand" Visible="false">
 
                                         <RowStyle CssClass="gradeA odd" />
@@ -344,7 +352,7 @@
                                             </asp:TemplateField>
                                         </Columns>
                                     </asp:GridView>
-
+</div>
                                 </div>
                             </asp:Panel>
                             <br />
@@ -353,9 +361,10 @@
 
                             <asp:Panel ID="pnlCars" runat="server" Visible="false">
                                 <div class="form-group">
+                                      <div class="col-sm-12">
                                     <label>Car Bookings</label>
                                     <asp:GridView ID="gvCarBookings" runat="server" AllowSorting="true" EmptyDataText="No Bookings Found"
-                                        AutoGenerateColumns="False" CssClass="table table-bordered table-striped mb-none dataTable no-footer"
+                                        AutoGenerateColumns="False" CssClass=" table-bordered table-striped mb-none dataTable no-footer"
                                         Width="100%" PageSize="4" usecustompager="true" OnRowCommand="gvCarBookings_RowCommand">
 
                                         <RowStyle CssClass="gradeA odd" />
@@ -438,6 +447,7 @@
                                         </Columns>
                                     </asp:GridView>
                                 </div>
+                                    </div>
                             </asp:Panel>
 
 

@@ -113,7 +113,7 @@ public partial class Admin_Admin : System.Web.UI.MasterPage
                 strAlert.Append("<div class='image'>");
                 strAlert.Append("<i class='fa fa-clock-o bg-danger'></i>");
                 strAlert.Append("</div>");
-                strAlert.Append("<span class='title'>E Ticket Need To Done</span>");
+                strAlert.Append("<span class='title_Notifcation'>E Ticket Need To Done</span>");
                 strAlert.Append("<span class='message'>Total Pending" + objDs.Tables[0].Rows.Count + "</span>");
                 strAlert.Append("</a>");
                 strAlert.Append("</li>");

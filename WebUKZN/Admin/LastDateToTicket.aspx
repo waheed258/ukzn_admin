@@ -37,7 +37,7 @@
                                 <asp:GridView ID="gdvFlightBookings" runat="server" AllowPaging="true" EmptyDataText="No Bookings Found" CssClass="table table-bordered table-striped mb-none dataTable no-footer"
                                     DataKeyNames="FlightRequestId"
                                     AutoGenerateColumns="False"
-                                    Width="100%" PageSize="100" usecustompager="true" OnRowCommand="gdvFlightBookings_RowCommand" OnRowDataBound="gdvFlightBookings_RowDataBound">
+                                    Width="100%"   PageSize="100" usecustompager="true" OnRowCommand="gdvFlightBookings_RowCommand" OnRowDataBound="gdvFlightBookings_RowDataBound">
 
                                     <RowStyle CssClass="gradeA odd" />
                                     <AlternatingRowStyle CssClass="gradeA even" />
@@ -56,7 +56,7 @@
                                                 <%#Eval("UserName")%>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Booking Date" SortExpression="BookingDate">
+                                        <asp:TemplateField HeaderText="Booking Date" SortExpression="BookingDate" ItemStyle-Width="100px">
                                             <ItemTemplate>
                                                 <%#Eval("BookingDate")%>
                                             </ItemTemplate>
@@ -95,7 +95,7 @@
                                             <ItemStyle HorizontalAlign="Center" />
                                             <HeaderStyle HorizontalAlign="Center" />
                                         </asp:BoundField>
-                                        <asp:TemplateField HeaderText="Jurney Date" SortExpression="FlightDate">
+                                        <asp:TemplateField HeaderText="Journey Date" SortExpression="FlightDate" ItemStyle-Width="100px">
                                             <ItemTemplate>
                                                 <%#Eval("FlightDate")%>
                                             </ItemTemplate>
